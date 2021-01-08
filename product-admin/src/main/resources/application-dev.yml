@@ -1,0 +1,21 @@
+#==============jdbc配置==============#
+spring:
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  datasource:
+    #============== druid 配置==============
+    type: com.alibaba.druid.pool.DruidDataSource
+    dynamic:
+      druid: #以下是全局默认值，可以全局更改
+        max-active: 10
+      primary: pcmc #应用默认使用数据源
+      datasource:
+        pcmc:
+          url: jdbc:mysql://10.22.50.133:3306/ers?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+          username: root
+          password: Sunline!666
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.22.50.134:8848
+        enabled: true

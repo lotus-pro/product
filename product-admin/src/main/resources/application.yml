@@ -1,0 +1,11 @@
+#指定启动端口
+server:
+  port: 9004
+spring:
+  profiles:
+    active: dev
+  #==============应用名配置=============
+  application:
+    name: product-admin
+  main:
+    allow-bean-definition-overriding: true
