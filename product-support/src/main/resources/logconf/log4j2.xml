@@ -3,7 +3,7 @@
 	<Properties>
 		<!-- 将系统属性进行一次本地转换 -->
 		<Property name="LOGGING_PATH">${sys:system.basedir}/logs</Property>
-		<Property name="SUNLINE_LOG_LEVEL">INFO</Property>
+		<Property name="PRODUCT_LOG_LEVEL">INFO</Property>
 		<Property name="LOGGING_FILE_ENCODING">UTF-8</Property>
 
 		<Property name="PID">????</Property>
@@ -64,7 +64,7 @@
 		</RollingFile>
 	</Appenders>
 	<Loggers>
-		<Logger name="com.sunline" level="${SUNLINE_LOG_LEVEL}" additivity="false">
+		<Logger name="com.platform" level="${PRODUCT_LOG_LEVEL}" additivity="false">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="default-appender" />
 			<AppenderRef ref="sys-error-appender" />
