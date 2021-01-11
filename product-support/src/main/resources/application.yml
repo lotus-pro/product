@@ -1,0 +1,19 @@
+#指定启动端口
+server:
+  port: 9005
+spring:
+  profiles:
+    active: dev
+  #==============应用名配置=============
+  application:
+    name: product-support
+  main:
+    allow-bean-definition-overriding: true
+swagger:
+  resources-provider:
+    swagger-resources:
+      - name: 用户消费者模块
+        url: /user-consumer/v2/api-docs
+      - name: 用户提供者模块
+        url: /user-provider/v2/api-docs
+  enabled: true

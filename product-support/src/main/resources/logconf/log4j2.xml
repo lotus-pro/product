@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Properties>
+		<!-- 将系统属性进行一次本地转换 -->
+		<Property name="LOGGING_PATH">${sys:system.basedir}/logs</Property>
+		<Property name="SUNLINE_LOG_LEVEL">INFO</Property>
+		<Property name="LOGGING_FILE_ENCODING">UTF-8</Property>
+
+		<Property name="PID">????</Property>
+		<Property name="LOG_EXCEPTION_CONVERSION_WORD">%xwEx</Property>
+		<Property name="LOG_LEVEL_PATTERN">%5p</Property>
+		<Property name="LOG_DATEFORMAT_PATTERN">yyyy-MM-dd HH:mm:ss.SSS</Property>
+		<Property name="CONSOLE_LOG_PATTERN">%clr{%d{${LOG_DATEFORMAT_PATTERN}}}{faint} %clr{${LOG_LEVEL_PATTERN}} %clr{${sys:PID}}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+		<Property name="FILE_LOG_PATTERN">%d{${LOG_DATEFORMAT_PATTERN}} ${LOG_LEVEL_PATTERN} ${sys:PID} --- [%t] %-40.40c{1.} : %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" />
+		</Console>
+		<RollingFile name="default-appender"
+					 fileName="${LOGGING_PATH}/default.log"
+					 filePattern="${LOGGING_PATH}/default.%d{yyyy-MM-dd}.log"
+					 append="true">
+			<ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="${sys:FILE_LOG_PATTERN}" />
+			<Policies>
+				<!-- 按天分日志文件:重要的是 filePattern 配置到按照天 -->
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<!-- 超过30个文件时，删除旧文件  -->
+			<DefaultRolloverStrategy max="30" />
+		</RollingFile>
+		<RollingFile name="sys-error-appender"
+					 fileName="${LOGGING_PATH}/sys-error.log"
+					 filePattern="${LOGGING_PATH}/sys-error.%d{yyyy-MM-dd}.log"
+					 append="true">
+			<!-- only print error log -->
+			<ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="${sys:FILE_LOG_PATTERN}" />
+			<Policies>
+				<!-- 按天分日志文件:重要的是 filePattern 配置到按照天 -->
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<!-- 超过30个文件时，删除旧文件  -->
+			<DefaultRolloverStrategy max="30" />
+		</RollingFile>
+		<RollingFile name="sys-rest-appender"
+					 fileName="${LOGGING_PATH}/sys-rest.log"
+					 filePattern="${LOGGING_PATH}/sys-rest.%d{yyyy-MM-dd}.log"
+					 append="true">
+			<!-- only print error log -->
+			<ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="${sys:FILE_LOG_PATTERN}" />
+			<Policies>
+				<!-- 按天分日志文件:重要的是 filePattern 配置到按照天 -->
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<!-- 超过30个文件时，删除旧文件  -->
+			<DefaultRolloverStrategy max="30" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.sunline" level="${SUNLINE_LOG_LEVEL}" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="default-appender" />
+			<AppenderRef ref="sys-error-appender" />
+		</Logger>
+		<Logger name="sys-rest" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="sys-rest-appender" />
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="default-appender" />
+			<AppenderRef ref="sys-error-appender" />
+		</Root>
+	</Loggers>
+</Configuration>
