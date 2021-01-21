@@ -19,6 +19,3 @@ spring:
       discovery:
         server-addr: 10.22.50.134:8848
         enabled: true
-
-swagger:
-  enable: true

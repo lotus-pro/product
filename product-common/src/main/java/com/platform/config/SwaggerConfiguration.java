@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.StringUtils;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -32,7 +33,7 @@ public class SwaggerConfiguration {
     private String applicationName;
     @Value("${swagger.enable}")
     private boolean enable;
-    @Value("${server.port:8080}")
+    @Value("${server.port}")
     private Integer serverPort;
     @Value("${spring.profiles.active:}")
     private String profileActive;
@@ -54,6 +55,9 @@ public class SwaggerConfiguration {
     }
 
     private boolean enable() {
+        if (StringUtils.isEmpty(enable) && !profileActive.equals("prd")) {
+
+        }
         return !profileActive.equals("prd");
     }
 
