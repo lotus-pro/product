@@ -31,7 +31,7 @@ public class SwaggerConfiguration {
 
     @Value("${spring.application.name}")
     private String applicationName;
-    @Value("${swagger.enable}")
+    @Value("${swagger.enable:true}")
     private boolean enable;
     @Value("${server.port}")
     private Integer serverPort;
