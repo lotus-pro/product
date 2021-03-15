@@ -67,14 +67,4 @@
             <outputDirectory>./db</outputDirectory>
         </fileSet>
     </fileSets>
-    <!-- start 新增点2： 把配置文件加密jar打出来用于执行执行加密脚本-->
-    <dependencySets>
-        <dependencySet>
-            <outputDirectory>./bin/lib</outputDirectory>
-            <scope>runtime</scope>
-            <includes>
-                <include>org.jasypt:jasypt</include>
-            </includes>
-        </dependencySet>
-    </dependencySets>
 </assembly>
