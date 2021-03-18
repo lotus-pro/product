@@ -20,6 +20,7 @@
         <module>product-admin</module>
         <module>product-support</module>
         <module>product-common</module>
+        <module>product-config</module>
     </modules>
 
     <properties>
@@ -498,7 +499,6 @@
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>eu.bitwalker</groupId>
