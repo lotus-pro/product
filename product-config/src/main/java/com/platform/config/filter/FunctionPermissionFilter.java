@@ -2,7 +2,7 @@ package com.platform.config.filter;
 
 import com.platform.common.util.ResponseUtil;
 import com.platform.config.entity.ProductRole;
-import com.platform.config.entity.ProductUser;
+import com.platform.config.entity.UserDetailInfo;
 import com.platform.config.util.AuthenticationUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -50,7 +50,7 @@ public class FunctionPermissionFilter extends OncePerRequestFilter {
                 if (userAnonymous.equals(principal)) {
                     return true;
                 } else {
-                    ProductUser productUser = AuthenticationUtils.getUserFromCache(principal);
+                    UserDetailInfo productUser = AuthenticationUtils.getUserFromCache(principal);
                     if (null == productUser) {
                         log.warn("{}无权限或忽略过滤权限，{}用户信息为空", requestURI, principal);
                         return false;

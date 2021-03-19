@@ -9,3 +9,22 @@ spring:
     name: product-admin
   main:
     allow-bean-definition-overriding: true
+  #==============国际化配置=============
+  messages:
+    basename: i18n/messages,com.sunline.jraf.messages
+#指定log配置
+logging:
+  level:
+    com.sunline: debug
+    org.springframework: warn
+  config: classpath:logconf/log4j2.xml
+
+#feign的超时时间, 防止feign调用超时
+feign:
+  httpclient:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 15000 #单位毫秒
+        readTimeout: 60000  #单位毫秒

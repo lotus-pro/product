@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 @Data
-public class ProductUser implements Serializable {
+public class UserDetailInfo implements Serializable {
     private static final long serialVersionUID = 376425831761675407L;
 
     private String userCode;
@@ -61,7 +61,7 @@ public class ProductUser implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ProductUser that = (ProductUser) o;
+        UserDetailInfo that = (UserDetailInfo) o;
 
         if (userCode != null ? !userCode.equals(that.userCode) : that.userCode != null) return false;
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;

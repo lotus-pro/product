@@ -3,7 +3,7 @@ package com.platform.config.util;
 import com.platform.common.cache.Cache;
 import com.platform.common.context.SpringContext;
 import com.platform.config.entity.ProductRole;
-import com.platform.config.entity.ProductUser;
+import com.platform.config.entity.UserDetailInfo;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +23,7 @@ public class AuthenticationUtils {
     private AuthenticationUtils() {
     }
 
-    public static ProductUser getCurrentUser() {
+    public static UserDetailInfo getCurrentUser() {
         String userCode = getCurrentUserCode();
         return getUserFromCache(userCode);
     }
@@ -43,13 +43,13 @@ public class AuthenticationUtils {
         }
     }
 
-    public static ProductUser getUserFromCache(String userCode) {
+    public static UserDetailInfo getUserFromCache(String userCode) {
         if (StringUtils.isEmpty(userCode)) {
             return null;
         } else {
             Map<String, Object> userMap = getUserMap(userCode);
             Object userObj = MapUtils.getMap(userMap, "userInfo");
-            return null == userObj ? null : (ProductUser) userObj;
+            return null == userObj ? null : (UserDetailInfo) userObj;
         }
     }
 
@@ -86,7 +86,7 @@ public class AuthenticationUtils {
         }
     }
 
-    public static void setUserCache(ProductUser user) {
+    public static void setUserCache(UserDetailInfo user) {
         Map<String, Object> userMap = getUserMap(user.getUserCode());
         if (null != userMap) {
             userMap.put("userInfo", user);
@@ -106,11 +106,11 @@ public class AuthenticationUtils {
         setAuthentication(request, "USER_ANONYMOUS");
     }
 
-    public static ProductRole getDefaultRole(ProductUser pteUser) {
+    public static ProductRole getDefaultRole(UserDetailInfo pteUser) {
         return getRole(pteUser, pteUser.getDefaultRole());
     }
 
-    public static ProductRole getRole(ProductUser pteUser, String roleCode) {
+    public static ProductRole getRole(UserDetailInfo pteUser, String roleCode) {
         if (null != pteUser && !StringUtils.isEmpty(roleCode)) {
             List<ProductRole> roles = pteUser.getRoles();
             if (CollectionUtils.isNotEmpty(roles)) {
@@ -130,7 +130,7 @@ public class AuthenticationUtils {
     }
 
     public static ProductRole getDefaultRole() {
-        ProductUser productUser = getCurrentUser();
+        UserDetailInfo productUser = getCurrentUser();
         return productUser != null ? getDefaultRole(productUser) : null;
     }
 }

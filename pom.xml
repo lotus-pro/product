@@ -21,6 +21,7 @@
         <module>product-support</module>
         <module>product-common</module>
         <module>product-config</module>
+        <module>product-entity</module>
     </modules>
 
     <properties>
