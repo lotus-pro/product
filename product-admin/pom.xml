@@ -6,7 +6,6 @@
 		<groupId>com.platform</groupId>
 		<artifactId>product</artifactId>
 		<version>1.0</version>
-		<relativePath/>
 	</parent>
 	<groupId>com.platform</groupId>
 	<artifactId>product-admin</artifactId>
