@@ -47,6 +47,7 @@
                 <include>*.properties</include>
             </includes>
         </fileSet>
+
         <fileSet>
             <fileMode>775</fileMode>
             <directory>deploy/bin</directory>
@@ -54,17 +55,9 @@
             <lineEnding>unix</lineEnding>
         </fileSet>
         <fileSet>
-            <fileMode>775</fileMode>
-            <directory>deploy/bin</directory>
-            <includes>
-                <include>*.bat</include>
-            </includes>
-            <outputDirectory>./bin</outputDirectory>
-            <lineEnding>windows</lineEnding>
-        </fileSet>
-        <fileSet>
             <directory>deploy/db</directory>
             <outputDirectory>./db</outputDirectory>
         </fileSet>
+
     </fileSets>
 </assembly>

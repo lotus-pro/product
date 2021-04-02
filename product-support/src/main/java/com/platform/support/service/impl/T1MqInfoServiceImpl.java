@@ -2,9 +2,9 @@ package com.platform.support.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.platform.common.entity.dto.admin.User;
 import com.platform.common.enums.TopicConsumerEnum;
 import com.platform.common.exception.CommonException;
+import com.platform.common.pojo.admin.TestUser;
 import com.platform.common.pojo.support.T1MqInfo;
 import com.platform.support.mapper.T1MqInfoMapper;
 import com.platform.support.service.T1MqInfoService;
@@ -41,7 +41,7 @@ public class T1MqInfoServiceImpl extends ServiceImpl<T1MqInfoMapper, T1MqInfo> i
     }
 
     @Override
-    public void addUserInfo(User user) {
+    public void addUserInfo(TestUser user) {
         baseMapper.addUserInfo(user);
     }
 

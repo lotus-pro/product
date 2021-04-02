@@ -18,14 +18,19 @@ public class T1MqInfo implements Serializable {
     private String messageId;
 
     /**
-     * 生产者
+     * 生产者 当为普通监听时候，不允许为空
      */
     private String producer;
 
     /**
-     * 生产者
+     * 消费者 当为普通监听时候，不允许为空
      */
     private String consumer;
+
+    /**
+     * 事务生产组，当为事务监听时，不允许为空
+     */
+    private String txProducerGroup;
 
     /**
      * topic
@@ -64,7 +69,9 @@ public class T1MqInfo implements Serializable {
 
     public T1MqInfo() {
     }
-
+    public T1MqInfo(String messageId) {
+        this.messageId = messageId;
+    }
     public T1MqInfo(String messageId, String producer, String consumer, String topic, String tags, String content) {
         this.messageId = messageId;
         this.producer = producer;

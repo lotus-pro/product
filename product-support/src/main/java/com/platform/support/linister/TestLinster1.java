@@ -1,4 +1,4 @@
-package com.platform.admin.linster;
+package com.platform.support.linister;
 
 import com.platform.common.enums.TopicConsumerEnum;
 import com.platform.common.fegin.SupportFeginClient;
@@ -13,15 +13,15 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RocketMQMessageListener(topic = "topic111",selectorExpression = "tags111", consumerGroup = "${spring.application.name}")
-public class TestLinster implements RocketMQListener<T1MqInfo> {
+public class TestLinster1 implements RocketMQListener<T1MqInfo> {
 
     @Autowired
     SupportFeginClient supportFeginClient;
 
     @Override
     public void onMessage(T1MqInfo mqInfo) {
-        log.info("第一个消费者接收消息" + mqInfo.toString());
-        mqInfo.setConsumer("product-admin");
+        log.info("第二个消费者接收消息" + mqInfo.toString());
+        mqInfo.setConsumer("product-support");
         ResponseResult result = supportFeginClient.isNormalConsume(mqInfo);
         Object data = result.getData();
         if (data.equals(TopicConsumerEnum.SUCCESS.getCode())) {
@@ -29,13 +29,7 @@ public class TestLinster implements RocketMQListener<T1MqInfo> {
             return;
         } else if (data.equals(TopicConsumerEnum.FAIL.getCode())) {
             log.info("继续消费");
-            //假设消费失败
-            mqInfo.setCousumeStatus(TopicConsumerEnum.FAIL.getCode());
-            supportFeginClient.updTpoicStatus(mqInfo);
 
-            //消费成功逻辑
-            mqInfo.setCousumeStatus(TopicConsumerEnum.SUCCESS.getCode());
-            supportFeginClient.updTpoicStatus(mqInfo);
         }
     }
 }

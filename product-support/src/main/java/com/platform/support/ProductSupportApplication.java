@@ -19,6 +19,7 @@ public class ProductSupportApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProductSupportApplication.class, args);
+        log.info("==============================product-support启动完成========================================");
     }
 
 }

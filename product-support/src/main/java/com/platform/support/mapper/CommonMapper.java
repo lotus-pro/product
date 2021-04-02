@@ -6,6 +6,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface CommonMapper {
-    @Update("update user set money = money + #{money},trans_id = #{transId} where id = '1'")
-    int addUser(@Param("transId") String transId, @Param("money") double money);
+    @Update("update test_user set money = money + #{money} where id = '1'")
+    int addUser(@Param("money") double money);
+
+    @Update("update company set money = money - #{money} where id = '1'")
+    int addCompany(@Param("money") double money);
+
+    @Update("select count(1) from company where transId = #{transId}")
+    int checkCompany(@Param("transId") String transId);
 }

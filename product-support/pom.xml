@@ -11,7 +11,7 @@
     <artifactId>product-support</artifactId>
     <version>1.0</version>
     <name>product-support</name>
-    <description>Demo project for Spring Boot</description>
+    <description>公共支持类项目工程</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -53,13 +53,13 @@
 		<dependency>
 			<groupId>com.platform</groupId>
 			<artifactId>product-common</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
             <scope>compile</scope>
 		</dependency>
         <dependency>
             <groupId>com.platform</groupId>
             <artifactId>product-config</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
             <scope>compile</scope>
         </dependency>
         <!-- 添加 Undertow -->
@@ -131,11 +131,11 @@
             <artifactId>poi-tl</artifactId>
             <version>${poi.tl.version}</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.xuxueli</groupId>-->
-            <!--<artifactId>xxl-job-core</artifactId>-->
-            <!--<version>2.0.2</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>2.0.2</version>
+        </dependency>
     </dependencies>
 
     <build>

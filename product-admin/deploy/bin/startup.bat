@@ -19,7 +19,6 @@ set SERVER=product-admin
 
 set "JAVA_OPT=%JAVA_OPT% -Xms1024m -Xmx1024m -Xmn512m"
 
-set JASYPT_PASSWORD="sunline"
 
 set "JAVA_OPT=%JAVA_OPT% -Dsystem.basedir=%BASE_DIR%"
 set "JAVA_OPT=%JAVA_OPT% -Dloader.path=%BASE_DIR%/plugins/health -jar %BASE_DIR%\target\%SERVER%.jar"

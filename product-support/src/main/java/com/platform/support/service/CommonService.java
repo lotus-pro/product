@@ -2,5 +2,9 @@ package com.platform.support.service;
 
 public interface CommonService {
 
-    int addUser(String transId, double money);
+    int addUser(double money);
+
+    int addCompany(double money);
+
+    int checkCompany(String transId);
 }

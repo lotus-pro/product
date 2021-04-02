@@ -30,7 +30,7 @@ public interface SupportFeginClient {
      * @param t1MqInfo
      * @return
      */
-    @PostMapping(value = "/mq/consume/status")
+    @PostMapping(value = "/mq/topic/status")
     ResponseResult isNormalConsume(@RequestBody T1MqInfo t1MqInfo);
 
     /**

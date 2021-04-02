@@ -6,7 +6,7 @@
       message_id, consumer, topic, tags, fail_times, cousume_status, cousume_date, crt_date
     </sql>
 
-    <update id="updateMqStatus" parameterType="com.platform.entity.support.pojo.T1MqInfo">
+    <update id="updateMqStatus" parameterType="com.platform.common.pojo.support.T1MqInfo">
         UPDATE T1_MQ_INFO
         <set>
             <if test="failTimes != null and failTimes != ''">
@@ -17,10 +17,13 @@
             </if>
             cousume_date = NOW()
         </set>
-        where message_id = #{messageId,jdbcType=VARCHAR} and consumer = #{consumer,jdbcType=VARCHAR}
+        where message_id = #{messageId,jdbcType=VARCHAR}
+        <if test="consumer != null and consumer != ''">
+            and consumer = #{consumer}
+        </if>
     </update>
 
-    <insert id="addUserInfo" parameterType="com.platform.common.entity.dto.admin.User">
+    <insert id="addUserInfo" parameterType="com.platform.common.pojo.admin.TestUser">
         insert into user(user_code,money) values(#{userCode},#{money})
     </insert>
 

@@ -13,7 +13,7 @@
     <artifactId>product-common</artifactId>
     <version>1.0</version>
     <name>product-common</name>
-    <description>Demo project for Spring Boot</description>
+    <description>通用项目工程</description>
 
     <properties>
     </properties>

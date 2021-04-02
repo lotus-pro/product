@@ -19,6 +19,7 @@ public class ProductAdminApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProductAdminApplication.class, args);
+		log.info("==============================product-admin启动完成========================================");
 	}
 
 }

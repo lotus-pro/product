@@ -12,7 +12,17 @@ public class CommonServiceImpl implements CommonService {
     CommonMapper commonMapper;
 
     @Override
-    public int addUser(String transId,double money) {
-        return commonMapper.addUser(transId,money);
+    public int addUser(double money) {
+        return commonMapper.addUser(money);
+    }
+
+    @Override
+    public int addCompany(double money) {
+        return commonMapper.addCompany(money);
+    }
+
+    @Override
+    public int checkCompany(String transId) {
+        return commonMapper.checkCompany(transId);
     }
 }
