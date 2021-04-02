@@ -11,7 +11,7 @@ spring:
       primary: pcmc #应用默认使用数据源
       datasource:
         pcmc:
-          url: jdbc:mysql://10.22.50.133:3306/ers?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+          url: jdbc:mysql://10.22.50.133:3306/xxl_job?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
           username: root
           password: Sunline!666
   cloud:
@@ -19,6 +19,43 @@ spring:
       discovery:
         server-addr: 10.22.50.134:8848
         enabled: true
+#==============redis配置==============
+  redis:
+    host: 10.22.50.134
+    password: boss666
+    port: 6379
+    timeout: 5000
+    database: 0
 
-swagger:
-  enable: true
+#============== myBatis-Plus配置==============
+mybatis-plus:
+  mapper-locations: classpath*:com/platform/**/mapper/*.xml,classpath*:mybatis/**/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: com.platform.*.entity,com.platform.*.pojo.**
+#ribbon的超时时间, 防止feign调用超时
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 15000
+        readTimeout: 15000
+#mq的配置
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: ${spring.application.name}
+  consumer:
+    group: ${spring.application.name}
+#xxl-job的配置
+xxl:
+  job:
+    admin:
+      addresses: http://127.0.0.1:8080/xxl-job-admin
+    accessToken:
+    executor:
+      appname: product-support-executor
+      address:
+      ip:
+      port: 9998
+      ##logpath: /data/applogs/xxl-job/jobhandler
+      logretentiondays: 15

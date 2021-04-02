@@ -9,11 +9,22 @@ spring:
     name: product-support
   main:
     allow-bean-definition-overriding: true
-swagger:
-  resources-provider:
-    swagger-resources:
-      - name: 用户消费者模块
-        url: /user-consumer/v2/api-docs
-      - name: 用户提供者模块
-        url: /user-provider/v2/api-docs
-  enabled: true
+  #==============国际化配置=============
+  messages:
+    basename: i18n/messages,com.sunline.jraf.messages
+#指定log配置
+logging:
+  level:
+    com.sunline: debug
+    org.springframework: warn
+  config: classpath:logconf/log4j2.xml
+
+#feign的超时时间, 防止feign调用超时
+feign:
+  httpclient:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 15000 #单位毫秒
+        readTimeout: 60000  #单位毫秒

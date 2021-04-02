@@ -11,7 +11,7 @@ spring:
       primary: pcmc #应用默认使用数据源
       datasource:
         pcmc:
-          url: jdbc:mysql://10.22.50.133:3306/ers?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+          url: jdbc:mysql://10.22.50.133:3306/xxl_job?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
           username: root
           password: Sunline!666
   cloud:
@@ -29,9 +29,9 @@ spring:
 
 #============== myBatis-Plus配置==============
 mybatis-plus:
-  mapper-locations: classpath*:com/sunline/modules/**/namesql/*.xml,classpath*:com/sunline/**/mapper/*.xml,classpath*:mybatis/**/*.xml
+  mapper-locations: classpath*:com/platform/**/mapper/*.xml,classpath*:mybatis/**/*.xml
   #实体扫描，多个package用逗号或者分号分隔
-  type-aliases-package: com.sunline.api.entity,com.sunline.modules.*.entity
+  type-aliases-package: com.platform.*.entity,com.platform.*.pojo.**
 #ribbon的超时时间, 防止feign调用超时
 feign:
   client:
@@ -39,3 +39,11 @@ feign:
       default:
         connectTimeout: 15000
         readTimeout: 15000
+#mq的配置
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: ${spring.application.name}
+    retry-times-when-send-async-failed: 1
+  consumer:
+    group: ${spring.application.name}

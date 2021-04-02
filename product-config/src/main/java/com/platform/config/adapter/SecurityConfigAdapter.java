@@ -13,12 +13,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
-import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * 配置让swagger跳过spring-security
@@ -64,24 +60,25 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        ((HttpSecurity)((HttpSecurity)((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl)
-                ((HttpSecurity)((HttpSecurity)((HttpSecurity)httpSecurity.csrf().disable())
-                        .cors().and()).sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and())
-                        .authorizeRequests().anyRequest()).authenticated().and()).exceptionHandling().and())
-                .addFilterBefore(this.jwtTokenDebugFilter(), UsernamePasswordAuthenticationFilter.class)
-                .addFilterAfter(this.jwtAuthorizationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-        if ("product-admin".equalsIgnoreCase(this.appName)) {
-            ((FormLoginConfigurer)((HttpSecurity)httpSecurity.authorizeRequests().and())
-//                    .addFilterBefore(this.verifyCodeFilter(), UsernamePasswordAuthenticationFilter.class)
-                    .addFilterBefore(this.loginPreFilter(), UsernamePasswordAuthenticationFilter.class).formLogin().loginProcessingUrl("/authentication/system/login")).successForwardUrl(LOGIN_SUCCESS_URL).failureForwardUrl(LOGIN_FAILURE_URL);
-        }
-//        httpSecurity.authorizeRequests()
-//                .antMatchers(LOGIN_URL).permitAll()
-//                .antMatchers("/api/**").authenticated()
-//                .and()
-//                .formLogin().permitAll()
-//                .and()
-//                .csrf().disable();
+//        ((HttpSecurity)((HttpSecurity)((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl)
+//                ((HttpSecurity)((HttpSecurity)((HttpSecurity)httpSecurity.csrf().disable())
+//                        .cors().and()).sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and())
+//                        .authorizeRequests().anyRequest()).authenticated().and()).exceptionHandling().and())
+//                .addFilterBefore(this.jwtTokenDebugFilter(), UsernamePasswordAuthenticationFilter.class)
+//                .addFilterAfter(this.jwtAuthorizationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+//        if ("product-admin".equalsIgnoreCase(this.appName)) {
+//            ((FormLoginConfigurer)((HttpSecurity)httpSecurity.authorizeRequests().and())
+////                    .addFilterBefore(this.verifyCodeFilter(), UsernamePasswordAuthenticationFilter.class)
+//                    .addFilterBefore(this.loginPreFilter(), UsernamePasswordAuthenticationFilter.class).formLogin().loginProcessingUrl("/authentication/system/login")).successForwardUrl(LOGIN_SUCCESS_URL).failureForwardUrl(LOGIN_FAILURE_URL);
+//        }
+
+        httpSecurity.authorizeRequests()
+                .antMatchers(LOGIN_URL).permitAll()
+                .antMatchers("/api/**").authenticated()
+                .and()
+                .formLogin().permitAll()
+                .and()
+                .csrf().disable();
     }
 
     public void configure(WebSecurity web) {

@@ -6,7 +6,7 @@ setlocal
 
 set "PATH=%JAVA_HOME%\bin;%PATH%"
 
-set serve_name=product-admin
+set serve_name=product-support
 echo killing %serve_name%
 
 for /f "tokens=1" %%i in ('jps -m ^| find "%serve_name%"') do ( taskkill /F /PID %%i )

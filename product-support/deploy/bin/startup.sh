@@ -15,7 +15,7 @@ if [ -z "$JAVA_HOME" ]; then
 fi
 
 
-export SERVER="product-admin"
+export SERVER="product-support"
 
 export JAVA_HOME
 export JAVA="$JAVA_HOME/bin/java"

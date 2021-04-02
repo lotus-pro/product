@@ -11,7 +11,7 @@
         <file>
             <fileMode>775</fileMode>
             <source>target/${project.build.finalName}.jar</source>
-            <destName>product-admin.jar</destName>
+            <destName>product-support.jar</destName>
             <outputDirectory>./target</outputDirectory>
         </file>
     </files>

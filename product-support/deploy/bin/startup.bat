@@ -14,7 +14,7 @@ set DEFAULT_SEARCH_LOCATIONS="classpath:/,classpath:/config/,file:./,file:./conf
 set CUSTOM_SEARCH_LOCATIONS=%DEFAULT_SEARCH_LOCATIONS%,file:%BASE_DIR%/conf/
 
 
-set SERVER=product-admin
+set SERVER=product-support
 
 
 set "JAVA_OPT=%JAVA_OPT% -Xms1024m -Xmx1024m -Xmn512m"

@@ -2,7 +2,7 @@
 
 cd `dirname $0`/../target
 target_dir=`pwd`
-server_name=product-admin
+server_name=product-support
 
 pid=`ps ax | grep -i ${server_name} | grep ${target_dir} | grep java | grep -v grep | awk '{print $1}'`
 if [ -z "$pid" ] ; then
