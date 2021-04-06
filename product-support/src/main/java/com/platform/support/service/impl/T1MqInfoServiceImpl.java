@@ -40,10 +40,4 @@ public class T1MqInfoServiceImpl extends ServiceImpl<T1MqInfoMapper, T1MqInfo> i
         }
     }
 
-    @Override
-    public void addUserInfo(TestUser user) {
-        baseMapper.addUserInfo(user);
-    }
-
-
 }

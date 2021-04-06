@@ -53,8 +53,8 @@ public class TestController {
     @PostMapping(value = "/test/addMessage")
     public ResponseResult addMessage(@RequestBody String aa) {
         String uuid = IDGenerate.getUUIDString();
-        T1MqInfo t1MqInfo = new T1MqInfo(uuid, "product-admin", "product-admin",
-                "topic111", "tags111", "小周周  想你了,在干嘛");
+        T1MqInfo t1MqInfo = new T1MqInfo(uuid, "product-admin", "product-admin,product-support",
+                "topic111", "tags111", "测试消费失败后，其中一个consumer继续消费，成功的则不消费");
         supportFeginClient.addMessage(t1MqInfo);
         return null;
     }

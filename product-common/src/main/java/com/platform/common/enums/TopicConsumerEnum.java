@@ -2,7 +2,8 @@ package com.platform.common.enums;
 
 public enum TopicConsumerEnum {
     SUCCESS("1", "成功"),
-    FAIL("0", "失败");
+    FAIL("0", "失败"),
+    NO_SPEND("2","未消费");
 
     private final String code;
     private final String description;

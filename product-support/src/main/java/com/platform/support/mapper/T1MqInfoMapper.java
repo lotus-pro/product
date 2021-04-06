@@ -11,6 +11,4 @@ public interface T1MqInfoMapper extends BaseMapper<T1MqInfo> {
     //更新mq的状态
     void updateMqStatus(T1MqInfo mqInfo);
 
-    void addUserInfo(TestUser user);
-
 }
