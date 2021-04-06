@@ -9,6 +9,4 @@ public interface T1MqInfoService extends IService<T1MqInfo> {
     //更改消费的topic状态
     void updMqStatus(T1MqInfo mqInfo) throws Exception;
 
-    void addUserInfo(TestUser user);
-
 }

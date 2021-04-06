@@ -25,13 +25,13 @@ public class TestLinster implements RocketMQListener<T1MqInfo> {
         ResponseResult result = supportFeginClient.isNormalConsume(mqInfo);
         Object data = result.getData();
         if (data.equals(TopicConsumerEnum.SUCCESS.getCode())) {
-            log.info("已经消费过，不再消费");
+            log.info("第一个已经消费过，不再消费");
             return;
-        } else if (data.equals(TopicConsumerEnum.FAIL.getCode())) {
-            log.info("继续消费");
+        } else if (data.equals(TopicConsumerEnum.FAIL.getCode()) || data.equals(TopicConsumerEnum.NO_SPEND.getCode())) {
+            log.info("第一个未消费的状态为{}，开始消费",data);
             //假设消费失败
-            mqInfo.setCousumeStatus(TopicConsumerEnum.FAIL.getCode());
-            supportFeginClient.updTpoicStatus(mqInfo);
+//            mqInfo.setCousumeStatus(TopicConsumerEnum.FAIL.getCode());
+//            supportFeginClient.updTpoicStatus(mqInfo);
 
             //消费成功逻辑
             mqInfo.setCousumeStatus(TopicConsumerEnum.SUCCESS.getCode());

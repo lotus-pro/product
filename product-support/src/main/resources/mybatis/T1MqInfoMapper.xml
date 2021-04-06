@@ -23,8 +23,4 @@
         </if>
     </update>
 
-    <insert id="addUserInfo" parameterType="com.platform.common.pojo.admin.TestUser">
-        insert into user(user_code,money) values(#{userCode},#{money})
-    </insert>
-
 </mapper>
