@@ -1,5 +1,6 @@
 package com.platform.support.mapper;
 
+import com.platform.common.pojo.admin.Company;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
@@ -14,4 +15,7 @@ public interface CommonMapper {
 
     @Update("select count(1) from company where transId = #{transId}")
     int checkCompany(@Param("transId") String transId);
+
+    Company queryOne(@Param("id") Integer transId);
+
 }
