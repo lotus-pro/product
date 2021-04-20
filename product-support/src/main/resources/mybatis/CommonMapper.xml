@@ -30,5 +30,4 @@
     <select id="queryListData">
         SELECT * FROM #{tableName}
     </select>
-
 </mapper>

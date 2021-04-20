@@ -42,6 +42,7 @@ public class TestController extends BaseController {
         System.out.println("本地系统取时间" + date);
         System.out.println("数据库时间" + company.getCrtDate());
 //        mailService.sendMail();
+        mailService.sendMail();
         return result();
     }
 
