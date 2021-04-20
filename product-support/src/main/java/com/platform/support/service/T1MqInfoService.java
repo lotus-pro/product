@@ -1,7 +1,6 @@
 package com.platform.support.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.platform.common.pojo.admin.TestUser;
 import com.platform.common.pojo.support.T1MqInfo;
 
 public interface T1MqInfoService extends IService<T1MqInfo> {

@@ -1,6 +1,5 @@
 package com.platform.support;
 
-import com.platform.config.annotation.EnableXxlJob;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -10,17 +9,19 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.scheduling.annotation.EnableAsync;
 
+import java.util.TimeZone;
+
 @EnableDiscoveryClient
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class},scanBasePackages = {"com.platform"})
 @EnableFeignClients(basePackages = {"com.platform"})
 @MapperScan({"com.platform.**.mapper"})
 @EnableAsync //开启异步调用
-@EnableXxlJob
 @Slf4j
 public class ProductSupportApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProductSupportApplication.class, args);
+//        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         log.info("==============================product-support启动完成========================================");
     }
 

@@ -1,5 +1,6 @@
 package com.platform.support.service.impl;
 
+import com.platform.common.pojo.admin.Company;
 import com.platform.support.mapper.CommonMapper;
 import com.platform.support.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,8 @@ public class CommonServiceImpl implements CommonService {
     }
 
     @Override
-    public int checkCompany(String transId) {
-        return commonMapper.checkCompany(transId);
+    public Company queryOne(Integer id) {
+        return commonMapper.queryOne(id);
     }
+
 }

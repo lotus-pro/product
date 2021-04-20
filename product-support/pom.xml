@@ -60,7 +60,6 @@
             <groupId>com.platform</groupId>
             <artifactId>product-config</artifactId>
             <version>${project.parent.version}</version>
-            <scope>compile</scope>
         </dependency>
         <!-- 添加 Undertow -->
         <dependency>
@@ -72,6 +71,11 @@
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <!--邮件发送-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
         <!-- 引入log4j2依赖 -->

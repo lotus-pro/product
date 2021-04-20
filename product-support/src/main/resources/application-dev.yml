@@ -11,24 +11,35 @@ spring:
       primary: pcmc #应用默认使用数据源
       datasource:
         pcmc:
-          url: jdbc:mysql://10.22.50.133:3306/xxl_job?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+          url: jdbc:mysql://10.22.50.133:3306/xxl_job?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useLegacyDatetimeCode=false&serverTimezone=UTC
           username: root
           password: Sunline!666
   cloud:
     nacos:
       discovery:
-        server-addr: 10.22.50.134:8848
+        server-addr: 192.168.23.129:8848
         enabled: true
 #==============redis配置==============
   redis:
-    host: 10.22.50.134
-    password: boss666
+    host: 192.168.23.129
+    password: zzredis
     port: 6379
     timeout: 5000
     database: 0
+  mail:
+    host: smtp.qq.com
+    protocol: smtp
+    username:
+    password:
+    default-encoding: UTF-8
+  smtp:
+    auth: true
+    starttls:
+      enable: true
+      required: true
 #mq的配置
 rocketmq:
-  name-server: 127.0.0.1:9876
+  name-server: 192.168.23.129:9876
   producer:
     group: ${spring.application.name}
   consumer:
@@ -37,7 +48,7 @@ rocketmq:
 xxl:
   job:
     admin:
-      addresses: http://127.0.0.1:8080/xxl-job-admin
+      addresses: http://192.168.23.129:8080/xxl-job-admin
     accessToken:
     executor:
       appname: product-support-executor
