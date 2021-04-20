@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.util.Date;
 
 @Data
 @TableName(value = "company")
@@ -15,4 +17,6 @@ public class Company implements Serializable {
     private String companyCode;
 
     private Double money;
+
+    private Instant crtDate;
 }

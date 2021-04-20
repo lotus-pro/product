@@ -1,6 +1,5 @@
 package com.platform.support;
 
-import com.platform.config.annotation.EnableXxlJob;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -15,12 +14,12 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableFeignClients(basePackages = {"com.platform"})
 @MapperScan({"com.platform.**.mapper"})
 @EnableAsync //开启异步调用
-@EnableXxlJob
 @Slf4j
 public class ProductSupportApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProductSupportApplication.class, args);
+//        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         log.info("==============================product-support启动完成========================================");
     }
 

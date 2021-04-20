@@ -11,33 +11,37 @@ import org.springframework.context.annotation.Configuration;
 public class XxlJobConfig {
     private Logger logger = LoggerFactory.getLogger(XxlJobConfig.class);
 
-    @Value("${xxl.job.admin.addresses}")
+    @Value("${xxl.job.admin.addresses:localhost}")
     private String adminAddresses;
 
-    @Value("${xxl.job.accessToken}")
+    @Value("${xxl.job.accessToken:localhost}")
     private String accessToken;
 
-    @Value("${xxl.job.executor.appname}")
+    @Value("${xxl.job.executor.appname:localhost}")
     private String appname;
 
-    @Value("${xxl.job.executor.address}")
+    @Value("${xxl.job.executor.address:localhost}")
     private String address;
 
-    @Value("${xxl.job.executor.ip}")
+    @Value("${xxl.job.executor.ip:localhost}")
     private String ip;
 
-    @Value("${xxl.job.executor.port}")
+    @Value("${xxl.job.executor.port:1}")
     private int port;
 
 //    @Value("${xxl.job.executor.logpath}")
 //    private String logPath;
 
-    @Value("${xxl.job.executor.logretentiondays}")
+    @Value("${xxl.job.executor.logretentiondays:1}")
     private int logRetentionDays;
 
 
     @Bean
     public XxlJobSpringExecutor xxlJobExecutor() {
+        if (adminAddresses.equals("localhost") || accessToken.equals("localhost") || appname.equals("localhost")
+                || address.equals("localhost") || ip.equals("localhost") || port == 1) {
+            return null;
+        }
         logger.info(">>>>>>>>>>> xxl-job config init.");
         XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
         xxlJobSpringExecutor.setAdminAddresses(adminAddresses);
