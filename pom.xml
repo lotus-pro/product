@@ -20,7 +20,7 @@
         <module>product-admin</module>
         <module>product-support</module>
         <module>product-common</module>
-        <module>product-config</module>
+        <module>product-core</module>
     </modules>
 
     <properties>
