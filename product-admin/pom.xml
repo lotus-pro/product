@@ -41,7 +41,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.platform</groupId>
-			<artifactId>product-config</artifactId>
+			<artifactId>product-core</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>

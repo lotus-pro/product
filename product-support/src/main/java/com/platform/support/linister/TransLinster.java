@@ -7,17 +7,15 @@ import com.platform.common.web.ResponseResult;
 import com.platform.support.controller.MqController;
 import com.platform.support.service.CommonService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.rocketmq.spring.annotation.RocketMQTransactionListener;
 import org.apache.rocketmq.spring.core.RocketMQLocalTransactionListener;
 import org.apache.rocketmq.spring.core.RocketMQLocalTransactionState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
-@Component
-@RocketMQTransactionListener(txProducerGroup = "tx_groups_order")
+//@Component
+//@RocketMQTransactionListener(txProducerGroup = "tx_groups_order")
 public class TransLinster implements RocketMQLocalTransactionListener {
 
     @Autowired

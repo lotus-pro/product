@@ -5,14 +5,12 @@ import com.platform.common.pojo.support.T1MqInfo;
 import com.platform.common.web.ResponseResult;
 import com.platform.support.controller.MqController;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
-@RocketMQMessageListener(topic = "topic111",selectorExpression = "tags111", consumerGroup = "${spring.application.name}")
+//@Component
+//@RocketMQMessageListener(topic = "topic111",selectorExpression = "tags111", consumerGroup = "${spring.application.name}")
 public class TestLinster1 implements RocketMQListener<T1MqInfo> {
 
     @Autowired

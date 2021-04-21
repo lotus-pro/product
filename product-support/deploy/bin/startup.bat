@@ -17,7 +17,7 @@ set CUSTOM_SEARCH_LOCATIONS=%DEFAULT_SEARCH_LOCATIONS%,file:%BASE_DIR%/conf/
 set SERVER=product-support
 
 
-set "JAVA_OPT=%JAVA_OPT% -Xms1024m -Xmx1024m -Xmn512m"
+set "JAVA_OPT=%JAVA_OPT% -Xms512m -Xmx512m -Xmn512m"
 
 
 set "JAVA_OPT=%JAVA_OPT% -Dsystem.basedir=%BASE_DIR%"

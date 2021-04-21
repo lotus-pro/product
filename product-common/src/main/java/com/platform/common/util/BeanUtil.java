@@ -1,10 +1,14 @@
 package com.platform.common.util;
 
+import com.baomidou.mybatisplus.core.toolkit.ExceptionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class BeanUtil {
@@ -30,5 +34,24 @@ public class BeanUtil {
      */
     public static void copyProperties(Object src, Object target) {
         BeanUtils.copyProperties(src, target, getNullPropertyNames(src));
+    }
+
+    public static <T> T mapToBean(Map<String, Object> map, Class<T> clazz) {
+        try {
+            T bean = newInstance(clazz);
+            org.apache.commons.beanutils.BeanUtils.populate(bean, map);
+            return bean;
+        } catch (InvocationTargetException | IllegalAccessException var3) {
+            throw ExceptionUtils.mpe("map convert to bean error,", var3, new Object[]{map, clazz.getName()});
+        }
+    }
+
+    public static <T> T newInstance(Class<T> clazz) {
+        try {
+            Constructor<T> constructor = clazz.getDeclaredConstructor();
+            return constructor.newInstance();
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | InstantiationException var2) {
+            throw ExceptionUtils.mpe("new instance error,please try add no args constructor", var2, new Object[]{clazz.getName()});
+        }
     }
 }

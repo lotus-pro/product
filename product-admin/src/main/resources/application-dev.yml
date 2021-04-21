@@ -17,18 +17,18 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.23.128:8848
+        server-addr: 10.22.50.134:8848
         enabled: true
   #==============redis配置==============
   redis:
-    host: 192.168.23.128
-    password: zzredis
+    host: 10.22.50.134
+    password: boss666
     port: 6379
     timeout: 5000
     database: 0
 #mq的配置
 rocketmq:
-  name-server: 192.168.23.128:9876
+  name-server: 127.0.0.1:9876
   producer:
     group: ${spring.application.name}
     retry-times-when-send-async-failed: 1
