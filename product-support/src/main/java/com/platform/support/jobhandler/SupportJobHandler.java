@@ -5,7 +5,6 @@ import com.platform.common.enums.TopicConsumerEnum;
 import com.platform.common.pojo.support.T1MqInfo;
 import com.platform.support.service.T1MqInfoService;
 import com.xxl.job.core.context.XxlJobHelper;
-import com.xxl.job.core.handler.annotation.XxlJob;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -25,7 +24,7 @@ public class SupportJobHandler {
     @Autowired
     RocketMQTemplate rocketMQTemplate;
 
-    @XxlJob("queryMqJob")
+//    @XxlJob("queryMqJob")
     public void demoJobHandler() throws Exception {
         XxlJobHelper.log(">>>mq消息查询<<<");
         String jobParam = XxlJobHelper.getJobParam();

@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.enums.TopicConsumerEnum;
 import com.platform.common.exception.CommonException;
-import com.platform.common.pojo.admin.TestUser;
 import com.platform.common.pojo.support.T1MqInfo;
 import com.platform.support.mapper.T1MqInfoMapper;
 import com.platform.support.service.T1MqInfoService;

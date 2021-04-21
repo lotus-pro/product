@@ -58,8 +58,8 @@
 		</dependency>
         <dependency>
             <groupId>com.platform</groupId>
-            <artifactId>product-config</artifactId>
-            <version>${project.parent.version}</version>
+            <artifactId>product-core</artifactId>
+            <version>1.0</version>
         </dependency>
         <!-- 添加 Undertow -->
         <dependency>

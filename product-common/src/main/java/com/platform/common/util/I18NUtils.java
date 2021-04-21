@@ -1,5 +1,6 @@
 package com.platform.common.util;
 
+import com.platform.common.config.ProductMessageSource;
 import com.platform.common.context.SpringContext;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.MessageSource;
@@ -34,7 +35,7 @@ public class I18NUtils {
         if (StringUtils.isBlank(code)) {
             return null;
         } else {
-            MessageSource messageSource = (MessageSource) SpringContext.getBean(MessageSource.class);
+            MessageSource messageSource = (MessageSource) SpringContext.getBean(ProductMessageSource.class);
             Locale tmpLocale = locale == null ? LocaleContextHolder.getLocale() : locale;
             return messageSource.getMessage(code, args, defaultValue, tmpLocale);
         }
