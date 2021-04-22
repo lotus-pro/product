@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
-@RocketMQMessageListener(topic = "topic111",selectorExpression = "tags111", consumerGroup = "${spring.application.name}")
+//@Component
+//@RocketMQMessageListener(topic = "topic111",selectorExpression = "tags111", consumerGroup = "${spring.application.name}")
 public class TestLinster implements RocketMQListener<T1MqInfo> {
 
     @Autowired

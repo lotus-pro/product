@@ -56,7 +56,7 @@ public class SupplierInfoController extends BaseController {
     @ApiOperation("新增")
     @PostMapping("/add")
     public ResponseResult saveDataInfo(@RequestBody SupplierInfo supplierInfo) {
-        Assert.isNull(null, "product.support.error.00003");
+        Assert.isNull(null, "product.support.error.00001","字段A");
 //        supplierInfoService.save(supplierInfo);
         return result();
     }

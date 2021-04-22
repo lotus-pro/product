@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -27,16 +28,15 @@ import java.text.MessageFormat;
 import java.util.*;
 
 @Service
+@Configuration
 public class ProductMessageSource implements MessageSource {
     private static final Logger log = LoggerFactory.getLogger(ProductMessageSource.class);
     private static final String I18N_FOLDER = "i18n";
-    private static final String[] JRAF_I18N_PACKAGES = new String[]{"com.platform.product.i18n"};
+    private static final String[] JRAF_I18N_PACKAGES = new String[]{"com.platform.core.i18n"};
     private static final Map<String, Properties> I18N_MAP = Maps.newConcurrentMap();
 
     public ProductMessageSource() {
-    }
-    public void loadAllMessages(String i18nPackages) {
-        this.loadPackage(i18nPackages);
+        this.loadPackage(""); //加载自定义的国际化配置
         File[] folderPropertiesFiles = this.getFolderPropertiesFiles();
         this.readProperties(folderPropertiesFiles);
     }

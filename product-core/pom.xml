@@ -39,10 +39,19 @@
 
     <build>
         <resources>
+            <!--将xml文件，properties文件，以及sh文件打包到jar中-->
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
+                </includes>
+                <!--是否支持参数替换-->
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>

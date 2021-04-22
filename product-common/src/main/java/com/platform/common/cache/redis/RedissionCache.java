@@ -3,6 +3,7 @@ package com.platform.common.cache.redis;
 import com.platform.common.cache.Cache;
 import org.redisson.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @author: zengzheng
  * @create: 2021-01-21 16:33
  */
+@Component
 public class RedissionCache implements Cache {
     @Autowired(
             required = false
