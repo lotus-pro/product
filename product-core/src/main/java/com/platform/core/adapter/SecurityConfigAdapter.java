@@ -6,7 +6,7 @@ import com.platform.core.filter.JwtTokenDebugFilter;
 import com.platform.core.filter.LoginPreFilter;
 import com.platform.core.handler.ProductAccessDeniedHandler;
 import com.platform.core.handler.ProductAuthenticationEntryPoint;
-import com.platform.core.user.ProductUserDetailsService;
+import com.platform.core.userdetail.ProductUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -31,8 +31,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     private static final String LOGIN_URL = "/auth/system/login";
-    private static final String LOGIN_SUCCESS_URL = "/auth/system/login".concat("/success");
-    private static final String LOGIN_FAILURE_URL = "/auth/system/login".concat("/failure");
+    private static final String LOGIN_OUT = "/auth/system/loginOut";
+    private static final String LOGIN_SUCCESS_URL = LOGIN_URL.concat("/success");
+    private static final String LOGIN_FAILURE_URL = LOGIN_URL.concat("/failure");
+    private static final String LOGIN_OUT_FAILURE_URL = LOGIN_OUT.concat("/failure");
     @Value("${spring.application.name}")
     private String appName;
     @Autowired
@@ -81,6 +83,7 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
 
         ((HttpSecurity) httpSecurity.authorizeRequests().and())
                 .addFilterBefore(this.loginPreFilter(), UsernamePasswordAuthenticationFilter.class)
+//                .logout().logoutUrl(LOGIN_OUT).logoutSuccessUrl(LOGIN_OUT_FAILURE_URL).and()
                 .formLogin().loginProcessingUrl(LOGIN_URL).successForwardUrl(LOGIN_SUCCESS_URL).failureForwardUrl(LOGIN_FAILURE_URL);
     }
 

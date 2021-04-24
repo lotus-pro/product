@@ -42,12 +42,12 @@ public class GlobalExceptionHandler {
 
         String eClass = e.getClass().getName();
         String activitiExceptionClass = "org.activiti.engine.ActivitiException";
-        return activitiExceptionClass.equals(eClass) ? this.handleWorkflowException(e) : ResponseResult.error("jraf.error.0006", new Object[0]);
+        return activitiExceptionClass.equals(eClass) ? this.handleWorkflowException(e) : ResponseResult.error("product.error.00006", new Object[0]);
     }
 
     private Object handleWorkflowException(Exception e) {
         log.error("WorkflowException异常", e);
-        String message = e.getCause() != null && !StringUtils.isBlank(e.getCause().getMessage()) ? e.getCause().getMessage() : "jraf.error.0006";
+        String message = e.getCause() != null && !StringUtils.isBlank(e.getCause().getMessage()) ? e.getCause().getMessage() : "product.error.00006";
         return ResponseResult.error(message, new Object[0]);
     }
 

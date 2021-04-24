@@ -83,7 +83,7 @@ public class ResponseResult<T> implements Serializable {
     public static <T> ResponseResult<T> success() {
         ResponseResult<T> result = new ResponseResult();
         result.setCode(StatusEnum.SUCCESS.getCode());
-        result.setMessage(I18NUtils.getMessage("jraf.info.0001", new Object[0]));
+        result.setMessage(I18NUtils.getMessage("product.info.00006", new Object[0]));
         return result;
     }
 

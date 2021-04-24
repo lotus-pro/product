@@ -3,8 +3,8 @@ package com.platform.core.filter;
 import com.auth0.jwt.JWTExpiredException;
 import com.auth0.jwt.JWTVerifyException;
 import com.platform.common.enums.StatusEnum;
+import com.platform.common.pojo.admin.ProductUser;
 import com.platform.common.util.ResponseUtil;
-import com.platform.core.entity.UserDetailInfo;
 import com.platform.core.util.AuthenticationUtils;
 import com.platform.core.util.TokenUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -48,7 +48,7 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
                     return;
                 }
 
-                UserDetailInfo productUser = (UserDetailInfo) userMap.get("userInfo");
+                ProductUser productUser = (ProductUser) userMap.get("userInfo");
                 String userCode = productUser.getUserCode();
                 if (this.offlineUserEnable) {
                     String cacheAccessToken = (String) userMap.get("accessToken");

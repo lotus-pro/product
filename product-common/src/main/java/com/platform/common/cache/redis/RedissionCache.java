@@ -119,6 +119,6 @@ public class RedissionCache implements Cache {
         RMap<K, V> rMap = this.redissonClient.getMap(key);
         rMap.clear();
         rMap.putAll(tMap);
-        rMap.expireAt(timestamp);
+        rMap.expire(timestamp, TimeUnit.SECONDS);
     }
 }

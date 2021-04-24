@@ -1,6 +1,7 @@
 package com.platform.core.util;
 
 import com.platform.common.cache.Cache;
+import com.platform.common.constants.CacheConstants;
 import com.platform.common.context.SpringContext;
 import com.platform.core.entity.ProductRole;
 import com.platform.core.entity.UserDetailInfo;
@@ -57,15 +58,15 @@ public class AuthenticationUtils {
         if (StringUtils.isEmpty(userCode)) {
             return null;
         } else {
-            Cache cache = (Cache) SpringContext.getBean(Cache.class);
-            return cache.getMap("CACHE_REDIS_AUTH_" + userCode);
+            Cache cache = SpringContext.getBean(Cache.class);
+            return cache.getMap(CacheConstants.CACHE_AUTH.concat(userCode));
         }
     }
 
     public static void removeUserMap(String userCode) {
         if (!StringUtils.isEmpty(userCode)) {
-            Cache cache = (Cache) SpringContext.getBean(Cache.class);
-            cache.del(new String[]{"CACHE_REDIS_AUTH_" + userCode});
+            Cache cache = SpringContext.getBean(Cache.class);
+            cache.del(new String[]{CacheConstants.CACHE_AUTH.concat(userCode)});
         }
     }
 
@@ -79,9 +80,9 @@ public class AuthenticationUtils {
             if (null == userMap.get("userInfo")) {
                 throw new IllegalArgumentException("map key name 'userInfo' can not be null");
             } else {
-                Cache cache = (Cache) SpringContext.getBean(Cache.class);
+                Cache cache = SpringContext.getBean(Cache.class);
                 long accessTokenExpireTimestamp = MapUtils.getLong(userMap, "access_token_expire_timestamp");
-                cache.setMap("CACHE_REDIS_AUTH_" + userCode, userMap, accessTokenExpireTimestamp);
+                cache.setMap(CacheConstants.CACHE_AUTH.concat(userCode), userMap, accessTokenExpireTimestamp);
             }
         }
     }

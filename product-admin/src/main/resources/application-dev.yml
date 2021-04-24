@@ -11,7 +11,7 @@ spring:
       primary: pcmc #应用默认使用数据源
       datasource:
         pcmc:
-          url: jdbc:mysql://10.22.50.133:3306/xxl_job?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+          url: jdbc:mysql://10.22.50.133:3306/z-test?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
           username: root
           password: Sunline!666
   cloud:
@@ -25,7 +25,7 @@ spring:
     password: boss666
     port: 6379
     timeout: 5000
-    database: 0
+    database: 1
 #mq的配置
 rocketmq:
   name-server: 127.0.0.1:9876

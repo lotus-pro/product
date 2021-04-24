@@ -1,9 +1,11 @@
 package com.platform.common.util;
 
 import com.baomidou.mybatisplus.core.toolkit.ExceptionUtils;
+import com.google.common.collect.Maps;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.cglib.beans.BeanMap;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -34,6 +36,10 @@ public class BeanUtil {
      */
     public static void copyProperties(Object src, Object target) {
         BeanUtils.copyProperties(src, target, getNullPropertyNames(src));
+    }
+
+    public static Map<String, Object> beanToMap(Object bean) {
+        return null == bean ? null : Maps.newHashMap(BeanMap.create(bean));
     }
 
     public static <T> T mapToBean(Map<String, Object> map, Class<T> clazz) {

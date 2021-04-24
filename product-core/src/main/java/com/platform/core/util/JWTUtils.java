@@ -21,14 +21,15 @@ public class JWTUtils implements Serializable {
     private static final Logger log = LoggerFactory.getLogger(JWTUtils.class);
     private static final long serialVersionUID = 7640141043291365235L;
 
-    private static final String SECRET = "!@#$%^12345@$%^&*ertyuERTYUIfghjVBNGH";
+//    private static final String SECRET = "!@#$%^12345@$%^&*ertyuERTYUIfghjVBNGH";
+    private static final String SECRET = "!@#$%12345@$%&*zengzheng";
     private static final String BODY = "body";
 
     public JWTUtils() {
     }
 
     public static String sign(Map<String, Object> object, int expirySeconds) {
-        JWTSigner signer = new JWTSigner("!@#$%^12345@$%^&*ertyuERTYUIfghjVBNGH");
+        JWTSigner signer = new JWTSigner(SECRET);
         Map<String, Object> claims = new HashMap();
         claims.put("body", object);
         JWTSigner.Options options = new JWTSigner.Options();
@@ -37,7 +38,7 @@ public class JWTUtils implements Serializable {
     }
 
     public static Map<String, Object> unsign(String token) throws JWTVerifyException {
-        JWTVerifier verifier = new JWTVerifier("!@#$%^12345@$%^&*ertyuERTYUIfghjVBNGH");
+        JWTVerifier verifier = new JWTVerifier(SECRET);
         Map claims = null;
 
         try {

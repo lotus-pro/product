@@ -3,6 +3,7 @@ package com.platform.core.util;
 import com.auth0.jwt.JWTExpiredException;
 import com.auth0.jwt.JWTVerifyException;
 import com.platform.common.cache.Cache;
+import com.platform.common.constants.CacheConstants;
 import com.platform.common.context.SpringContext;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -70,8 +71,8 @@ public class TokenUtil {
             log.error("JWT token解析异常，用户编码为空");
             throw new JWTVerifyException();
         } else {
-            Cache cache = (Cache) SpringContext.getBean(Cache.class);
-            Map<String, Object> userMap = cache.getMap("CACHE_REDIS_AUTH_" + username);
+            Cache cache = SpringContext.getBean(Cache.class);
+            Map<String, Object> userMap = cache.getMap(CacheConstants.CACHE_AUTH.concat(username));
             if (null == userMap) {
                 log.error("JWT token解析异常，用户{}未登陆或不存在", username);
                 throw new JWTVerifyException();
