@@ -10,4 +10,6 @@ public interface LoginPostProcessor {
     String obtainUsername(ServletRequest request);
 
     String obtainPassword(ServletRequest request);
+
+    String obtainIdentifyCode(ServletRequest request);
 }

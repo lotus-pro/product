@@ -35,6 +35,10 @@
             <artifactId>xxl-job-core</artifactId>
             <version>2.3.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -76,6 +80,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--可执行jar方便其他模块进行依赖-->
+                <configuration>
+                    <classifier>exec</classifier>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

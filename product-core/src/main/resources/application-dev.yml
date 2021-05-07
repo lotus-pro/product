@@ -27,9 +27,9 @@ spring:
     timeout: 5000
     database: 1
 #mq的配置
-rocketmq:
-  name-server: 192.168.23.129:9876
-  producer:
-    group: ${spring.application.name}
-  consumer:
-    group: ${spring.application.name}
+#rocketmq:
+#  name-server: 192.168.23.129:9876
+#  producer:
+#    group: ${spring.application.name}
+#  consumer:
+#    group: ${spring.application.name}

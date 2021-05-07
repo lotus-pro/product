@@ -1,6 +1,6 @@
 # platform
 个人学习使用，本项目是采用2.1.9版本的spingboot作为底层框架学习使用
-采用assembly插件进行打包，将deploy下的sheel的脚本打包到gz文件当中，
+采用assembly插件进行打包，将deploy下的shell的脚本打包到gz文件当中，
 使用者可直接运行对应的*.sh或*.bat脚本集成swagger（丝袜哥）作为接口文档，yml文件支持多数据源配置
 
 

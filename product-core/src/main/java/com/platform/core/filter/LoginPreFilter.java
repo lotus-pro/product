@@ -3,7 +3,9 @@ package com.platform.core.filter;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWTExpiredException;
+import com.platform.common.cache.Cache;
 import com.platform.common.enums.LoginTypeEnum;
+import com.platform.common.util.IpUtils;
 import com.platform.common.util.ResponseUtil;
 import com.platform.core.processor.FormLoginPostProcessor;
 import com.platform.core.processor.JsonLoginPostProcessor;
@@ -28,15 +30,19 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class LoginPreFilter extends OncePerRequestFilter {
+
+    private Cache cache;
+
     private static final Logger log = LoggerFactory.getLogger(LoginPreFilter.class);
     private AntPathRequestMatcher requiresAuthenticationRequestMatcher;
     private Map<LoginTypeEnum, LoginPostProcessor> processors = new EnumMap(LoginTypeEnum.class);
 
-    public LoginPreFilter(String loginProcessingUrl) {
+    public LoginPreFilter(String loginProcessingUrl,Cache cache) {
         Assert.notNull(loginProcessingUrl, "loginProcessingUrl must not be null");
         this.requiresAuthenticationRequestMatcher = new AntPathRequestMatcher(loginProcessingUrl, HttpMethod.POST.name());
         this.processors.put(LoginTypeEnum.JSON, new JsonLoginPostProcessor());
         this.processors.put(LoginTypeEnum.FORM, new FormLoginPostProcessor());
+        this.cache = cache;
     }
 
     @Override
@@ -46,6 +52,20 @@ public class LoginPreFilter extends OncePerRequestFilter {
             LoginPostProcessor loginPostProcessor = (LoginPostProcessor) this.processors.get(LoginTypeEnum.JSON);
             String username = loginPostProcessor.obtainUsername(parameterRequestWrapper);
             String password = loginPostProcessor.obtainPassword(parameterRequestWrapper);
+            String checkCode = loginPostProcessor.obtainIdentifyCode(parameterRequestWrapper);
+
+            String ipAddr = IpUtils.getIpAddr(request).replaceAll("\\.", "");
+            String code = cache.get("captcha" + ipAddr, String.class);
+            if (StringUtils.isBlank(code) || StringUtils.isBlank(checkCode)) {
+                ResponseUtil.filterResponseResultError(request, response, "product.error.00007");
+                return;
+            }
+            if (!code.equals(checkCode)) {
+                ResponseUtil.filterResponseResultError(request, response, "product.error.00008");
+                return;
+            }
+            cache.del("captcha" + ipAddr);
+
             parameterRequestWrapper.setAttribute("username", username);
             parameterRequestWrapper.setAttribute("password", password);
             JSONObject jsonBody = JSON.parseObject(parameterRequestWrapper.getBody());

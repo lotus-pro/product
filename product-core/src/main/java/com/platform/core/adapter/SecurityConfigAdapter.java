@@ -1,9 +1,11 @@
 package com.platform.core.adapter;
 
+import com.platform.common.cache.Cache;
 import com.platform.core.filter.FunctionPermissionFilter;
 import com.platform.core.filter.JwtAuthorizationTokenFilter;
 import com.platform.core.filter.JwtTokenDebugFilter;
 import com.platform.core.filter.LoginPreFilter;
+import com.platform.core.handler.LoginFailureHandler;
 import com.platform.core.handler.ProductAccessDeniedHandler;
 import com.platform.core.handler.ProductAuthenticationEntryPoint;
 import com.platform.core.userdetail.ProductUserDetailsService;
@@ -42,6 +44,9 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     @Value("${pte.jwt.offlineUserEnable:false}")
     private boolean offlineUserEnable;
 
+    @Autowired
+    Cache cache;
+
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
@@ -56,11 +61,15 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     }
 
     public LoginPreFilter loginPreFilter() {
-        return new LoginPreFilter("/auth/system/login");
+        return new LoginPreFilter("/auth/system/login", cache);
     }
 
     public FunctionPermissionFilter functionPermissionFilter() {
         return new FunctionPermissionFilter();
+    }
+
+    public LoginFailureHandler loginFailureHandler(){
+        return new LoginFailureHandler();
     }
 
 //    @Conditional({IsPcmcCondition.class})
@@ -78,16 +87,28 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    private static final String[] URL_WHITELIST = {
+            "/auth/system/system/kaptcha",
+            "/favicon.ico",
+
+    };
+
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        ((HttpSecurity)((HttpSecurity)((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl)((HttpSecurity)((HttpSecurity)((HttpSecurity)httpSecurity.csrf().disable()).cors().and()).sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()).authorizeRequests().anyRequest()).authenticated().and()).exceptionHandling().accessDeniedHandler(new ProductAccessDeniedHandler()).authenticationEntryPoint(new ProductAuthenticationEntryPoint()).and()).addFilterBefore(this.jwtTokenDebugFilter(), UsernamePasswordAuthenticationFilter.class).addFilterAfter(this.jwtAuthorizationTokenFilter(), UsernamePasswordAuthenticationFilter.class).addFilterBefore(this.functionPermissionFilter(), FilterSecurityInterceptor.class);
+        ((HttpSecurity)((HttpSecurity)((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl)((HttpSecurity)((HttpSecurity)((HttpSecurity)httpSecurity.csrf().disable()).cors().and()).sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and())
+                .authorizeRequests().antMatchers(URL_WHITELIST))
+                .authenticated().and()).exceptionHandling().accessDeniedHandler(new ProductAccessDeniedHandler()).authenticationEntryPoint(new ProductAuthenticationEntryPoint()).and())
+                .addFilterBefore(this.jwtTokenDebugFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(this.jwtAuthorizationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(this.functionPermissionFilter(), FilterSecurityInterceptor.class);
 
         ((HttpSecurity) httpSecurity.authorizeRequests().and())
                 .addFilterBefore(this.loginPreFilter(), UsernamePasswordAuthenticationFilter.class)
-//                .logout().logoutUrl(LOGIN_OUT).logoutSuccessUrl(LOGIN_OUT_FAILURE_URL).and()
-                .formLogin().loginProcessingUrl(LOGIN_URL).successForwardUrl(LOGIN_SUCCESS_URL).failureForwardUrl(LOGIN_FAILURE_URL);
+                .formLogin().loginProcessingUrl(LOGIN_URL).successForwardUrl(LOGIN_SUCCESS_URL)
+                .failureHandler(this.loginFailureHandler());
     }
 
     public void configure(WebSecurity web) {
+        //配置需要跳过security过滤的资源或者接口
         web.ignoring().antMatchers(new String[]{
                 "/v2/api-docs", "/favicon.ico", "/css/**",
                 "/swagger-resources", "/swagger*",
@@ -95,8 +116,7 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
                 "/configuration/security", "/swagger-ui.html/**",
                 "/webjars/**", "/druid/**", "/actuator/**",
                 "/oauth/**", "/rest/**",
-                "/messageServer/**", "/app/**",
-                "/verifycode/system/generateVerifyCode"});
+                "/messageServer/**", "/app/**"});
     }
 
 }

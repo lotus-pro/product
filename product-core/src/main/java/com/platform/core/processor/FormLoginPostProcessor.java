@@ -21,4 +21,8 @@ public class FormLoginPostProcessor implements LoginPostProcessor {
     public String obtainPassword(ServletRequest request) {
         return request.getParameter("password");
     }
+
+    public String obtainIdentifyCode(ServletRequest request) {
+        return request.getParameter("code");
+    }
 }
