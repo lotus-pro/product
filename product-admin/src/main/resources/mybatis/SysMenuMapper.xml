@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.admin.mapper.SysMenuMapper">
+
+    <sql id="Base_Column_List">
+        id, parent_id, menu_name, menu_path, men_perms, component, type, icon, order_num, create_time, update_time, is_enabled    </sql>
+
+    <resultMap id="BaseResultMap" type="com.platform.admin.entity.SysMenu">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+        <result property="menuName" column="menu_name" jdbcType="VARCHAR"/>
+        <result property="menuPath" column="menu_path" jdbcType="VARCHAR"/>
+        <result property="menPerms" column="men_perms" jdbcType="VARCHAR"/>
+        <result property="component" column="component" jdbcType="VARCHAR"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="icon" column="icon" jdbcType="VARCHAR"/>
+        <result property="orderNum" column="order_num" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isEnabled" column="is_enabled" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into z-test.sys_menu(parent_id, menu_name, menu_path, men_perms, component, type, icon, order_num, create_time, update_time, is_enabled)
+        values (#{parentId}, #{menuName}, #{menuPath}, #{menPerms}, #{component}, #{type}, #{icon}, #{orderNum}, #{createTime}, #{updateTime}, #{isEnabled})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update z-test.sys_menu
+        <set>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="menuName != null and menuName != ''">
+                menu_name = #{menuName},
+            </if>
+            <if test="menuPath != null and menuPath != ''">
+                menu_path = #{menuPath},
+            </if>
+            <if test="menPerms != null and menPerms != ''">
+                men_perms = #{menPerms},
+            </if>
+            <if test="component != null and component != ''">
+                component = #{component},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="icon != null and icon != ''">
+                icon = #{icon},
+            </if>
+            <if test="orderNum != null">
+                order_num = #{orderNum},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="isEnabled != null and isEnabled != ''">
+                is_enabled = #{isEnabled},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from z-test.sys_menu where id = #{id}
+    </delete>
+
+    <select id="queryRoleOfMenu" parameterType="java.lang.String" resultType="com.platform.admin.entity.SysMenu">
+        SELECT m.id, parent_id, menu_name, menu_path, men_perms, component, type, icon, order_num, create_time, update_time, is_enabled
+        FROM sys_role_menu rm inner join sys_menu m on rm.menu_id = m.id where rm.role_code = #{roleCode}
+    </select>
+
+</mapper>

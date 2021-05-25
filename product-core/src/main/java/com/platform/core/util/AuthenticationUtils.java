@@ -1,5 +1,7 @@
 package com.platform.core.util;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.platform.common.cache.Cache;
 import com.platform.common.constants.CacheConstants;
 import com.platform.common.context.SpringContext;
@@ -49,8 +51,8 @@ public class AuthenticationUtils {
             return null;
         } else {
             Map<String, Object> userMap = getUserMap(userCode);
-            Object userObj = MapUtils.getMap(userMap, "userInfo");
-            return null == userObj ? null : (UserDetailInfo) userObj;
+            Object userObj = userMap.get("userInfo");
+            return null == userObj ? null : JSONObject.parseObject(JSON.toJSONString(userObj), UserDetailInfo.class);
         }
     }
 
@@ -111,9 +113,9 @@ public class AuthenticationUtils {
         return getRole(pteUser, pteUser.getDefaultRole());
     }
 
-    public static ProductRole getRole(UserDetailInfo pteUser, String roleCode) {
-        if (null != pteUser && !StringUtils.isEmpty(roleCode)) {
-            List<ProductRole> roles = pteUser.getRoles();
+    public static ProductRole getRole(UserDetailInfo productUser, String roleCode) {
+        if (null != productUser && !StringUtils.isEmpty(roleCode)) {
+            List<ProductRole> roles = productUser.getRoles();
             if (CollectionUtils.isNotEmpty(roles)) {
                 Iterator var3 = roles.iterator();
 

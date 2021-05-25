@@ -17,7 +17,7 @@ public class ProductUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        ProductUser productUser = this.productUserService.queryPcmcUser(username);
+        ProductUser productUser = this.productUserService.queryProductUser(username);
         if (null == productUser) {
             throw new UsernameNotFoundException("product.error.00003");
         } else {

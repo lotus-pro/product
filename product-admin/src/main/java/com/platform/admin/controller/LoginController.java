@@ -64,7 +64,7 @@ public class LoginController extends BaseController {
     public ResponseResult loginSucces(@RequestBody Map<String, Object> params) {
         String username = (String)params.get("username");
         Map<String, Object> map = Maps.newHashMap();
-        ProductUser productUser = productUserService.queryPcmcUser(username);
+        ProductUser productUser = productUserService.queryProductUser(username);
         map.put("userInfo", productUser);
         map.put("access_token_expire_timestamp", 1800);
         map.put("identity", username);
@@ -78,7 +78,7 @@ public class LoginController extends BaseController {
     public ResponseResult loginOut(@RequestBody Map<String, Object> params) {
         String username = (String)params.get("username");
         AuthenticationUtils.removeUserMap(username);
-        return result("product.info.00006");
+        return result();
     }
 
 }

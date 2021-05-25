@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class ProductUser implements Serializable {
-    @TableId("USER_CODE")
+    @TableId("user_code")
     @NotBlank(
             message = "{pcmc.user.valid.0001}"
     )
@@ -24,7 +24,7 @@ public class ProductUser implements Serializable {
             isImportField = "true"
     )
     private String userCode;
-    @TableField("USER_NAME")
+    @TableField("user_name")
     @NotBlank(
             message = "{pcmc.user.valid.0002}"
     )
@@ -37,33 +37,27 @@ public class ProductUser implements Serializable {
             message = "{pcmc.user.error.0021}"
     )
     private String userName;
-    @TableField("USER_PASSWORD")
+    @TableField("user_password")
     private String userPassword;
-    @TableField("PHONE")
+    @TableField("phone")
     @Excel(
             name = "手机号",
             isImportField = "true"
     )
     private String phone;
-    @TableField("PAGESIZE")
-    @Excel(
-            name = "分页",
-            isImportField = "true",
-            dict = "pcmc,pagesize",
-            addressList = true
-    )
-    private Integer pagesize;
-    @TableField("MENU_TYPE")
+    @TableField("avatar")
+    private String avatar;
+    @TableField("menu_type")
     private String menuType;
-    @TableField("SKIN_CODE")
+    @TableField("skin_code")
     private String skinCode;
-    @TableField("LAST_ROLE")
+    @TableField("last_role")
     private String lastRole;
-    @TableField("DEFAULT_ROLE")
+    @TableField("default_role")
     private String defaultRole;
-    @TableField("UPDATE_PASSWORD_DATE")
+    @TableField("update_password_date")
     private Date updatePasswordDate;
-    @TableField("UPDATE_PASSWORD_DAYS")
+    @TableField("update_password_days")
     @Excel(
             name = "修改密码天数",
             isImportField = "true"
@@ -79,7 +73,7 @@ public class ProductUser implements Serializable {
             addressList = true
     )
     private String isEnabled;
-    @TableField("UPDATE_PASSWORD_FLAG")
+    @TableField("update_password_flag")
     private String updatePasswordFlag;
 
     public String getUserCode() {
@@ -94,8 +88,12 @@ public class ProductUser implements Serializable {
         return this.userPassword;
     }
 
-    public Integer getPagesize() {
-        return this.pagesize;
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getMenuType() {
@@ -140,10 +138,6 @@ public class ProductUser implements Serializable {
 
     public void setUserPassword(final String userPassword) {
         this.userPassword = userPassword;
-    }
-
-    public void setPagesize(final Integer pagesize) {
-        this.pagesize = pagesize;
     }
 
     public void setMenuType(final String menuType) {
@@ -193,7 +187,7 @@ public class ProductUser implements Serializable {
                 ", userName='" + userName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 ", phone='" + phone + '\'' +
-                ", pagesize=" + pagesize +
+                ", avatar=" + avatar +
                 ", menuType='" + menuType + '\'' +
                 ", skinCode='" + skinCode + '\'' +
                 ", lastRole='" + lastRole + '\'' +
@@ -216,7 +210,7 @@ public class ProductUser implements Serializable {
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
         if (userPassword != null ? !userPassword.equals(that.userPassword) : that.userPassword != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
-        if (pagesize != null ? !pagesize.equals(that.pagesize) : that.pagesize != null) return false;
+        if (avatar != null ? !avatar.equals(that.avatar) : that.avatar != null) return false;
         if (menuType != null ? !menuType.equals(that.menuType) : that.menuType != null) return false;
         if (skinCode != null ? !skinCode.equals(that.skinCode) : that.skinCode != null) return false;
         if (lastRole != null ? !lastRole.equals(that.lastRole) : that.lastRole != null) return false;
@@ -235,7 +229,7 @@ public class ProductUser implements Serializable {
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
         result = 31 * result + (userPassword != null ? userPassword.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (pagesize != null ? pagesize.hashCode() : 0);
+        result = 31 * result + (avatar != null ? avatar.hashCode() : 0);
         result = 31 * result + (menuType != null ? menuType.hashCode() : 0);
         result = 31 * result + (skinCode != null ? skinCode.hashCode() : 0);
         result = 31 * result + (lastRole != null ? lastRole.hashCode() : 0);
@@ -260,14 +254,14 @@ public class ProductUser implements Serializable {
     ) @Length(
             max = 256,
             message = "{pcmc.user.error.0021}"
-    ) String userName, String userPassword, String phone, Integer pagesize, String menuType, String skinCode, String lastRole, String defaultRole, Date updatePasswordDate, Integer updatePasswordDays, @NotBlank(
+    ) String userName, String userPassword, String phone, String avatar, String menuType, String skinCode, String lastRole, String defaultRole, Date updatePasswordDate, Integer updatePasswordDays, @NotBlank(
             message = "{jraf.valid.0001}"
     ) String isEnabled, String updatePasswordFlag) {
         this.userCode = userCode;
         this.userName = userName;
         this.userPassword = userPassword;
         this.phone = phone;
-        this.pagesize = pagesize;
+        this.avatar = avatar;
         this.menuType = menuType;
         this.skinCode = skinCode;
         this.lastRole = lastRole;

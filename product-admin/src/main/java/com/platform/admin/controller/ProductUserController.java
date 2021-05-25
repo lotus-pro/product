@@ -5,7 +5,9 @@ import com.platform.common.pojo.admin.ProductUser;
 import com.platform.common.util.BeanUtil;
 import com.platform.common.web.BaseController;
 import com.platform.common.web.ResponseResult;
+import com.platform.core.entity.UserDetailInfo;
 import com.platform.core.userdetail.ProductUserService;
+import com.platform.core.util.AuthenticationUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -77,8 +79,14 @@ public class ProductUserController extends BaseController {
     @ApiOperation("删除")
     @DeleteMapping("/delete")
     public ResponseResult deleteDataInfo(@RequestParam String id) {
-//        productUserService.removeById(id);
         return result();
+    }
+
+    @ApiOperation("获取用户信息")
+    @GetMapping("/userInfo")
+    public ResponseResult getUserInfo() {
+        UserDetailInfo currentUser = AuthenticationUtils.getCurrentUser();
+        return result(currentUser);
     }
 
 }

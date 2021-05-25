@@ -49,7 +49,8 @@ public class JwtAuthorizationTokenFilter extends OncePerRequestFilter {
                 }
 
                 ProductUser productUser = (ProductUser) userMap.get("userInfo");
-                String userCode = productUser.getUserCode();
+//                String userCode = productUser.getUserCode();
+                String userCode = "zengzheng";
                 if (this.offlineUserEnable) {
                     String cacheAccessToken = (String) userMap.get("accessToken");
                     if (StringUtils.isNotBlank(cacheAccessToken) && !StringUtils.equals(authToken, cacheAccessToken)) {

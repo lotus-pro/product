@@ -27,10 +27,10 @@ spring:
     timeout: 5000
     database: 1
 #mq的配置
-rocketmq:
-  name-server: 127.0.0.1:9876
-  producer:
-    group: ${spring.application.name}
-    retry-times-when-send-async-failed: 1
-  consumer:
-    group: ${spring.application.name}
+#rocketmq:
+#  name-server: 127.0.0.1:9876
+#  producer:
+#    group: ${spring.application.name}
+#    retry-times-when-send-async-failed: 1
+#  consumer:
+#    group: ${spring.application.name}

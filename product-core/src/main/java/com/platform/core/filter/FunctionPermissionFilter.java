@@ -55,7 +55,8 @@ public class FunctionPermissionFilter extends OncePerRequestFilter {
                         log.warn("{}无权限或忽略过滤权限，{}用户信息为空", requestURI, principal);
                         return false;
                     } else {
-                        ProductRole defaultRole = AuthenticationUtils.getDefaultRole(productUser);
+//                        ProductRole defaultRole = AuthenticationUtils.getDefaultRole(productUser);
+                        String defaultRole = productUser.getDefaultRole();
                         if (null == defaultRole) {
                             log.warn("用户{}没有默认角色", productUser.getUserCode());
                             return false;

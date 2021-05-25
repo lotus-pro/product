@@ -12,10 +12,12 @@ public class UserDetailInfo implements Serializable {
 
     private String userCode;
     private String userName;
-    private String layout;
-    private Integer pageSize;
-    private String theme;
-    private String language;
+    private String userPassword;
+    private String phone;
+//    private String layout;
+//    private Integer pageSize;
+//    private String theme;
+//    private String language;
     private String defaultRole;
     private String defaultRoleName;
     //后续涉及角色
@@ -28,18 +30,16 @@ public class UserDetailInfo implements Serializable {
     private Boolean lock = false;
     private String lockTime;
     private Boolean isOverdue;
-    private String image;
-    private Integer remainderDays;
+    private String avatar;
+    private Integer isEnabled;
 
     @Override
     public String toString() {
-        return "ProductUser{" +
+        return "UserDetailInfo{" +
                 "userCode='" + userCode + '\'' +
                 ", userName='" + userName + '\'' +
-                ", layout='" + layout + '\'' +
-                ", pageSize=" + pageSize +
-                ", theme='" + theme + '\'' +
-                ", language='" + language + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", phone='" + phone + '\'' +
                 ", defaultRole='" + defaultRole + '\'' +
                 ", defaultRoleName='" + defaultRoleName + '\'' +
                 ", roles=" + roles +
@@ -51,8 +51,8 @@ public class UserDetailInfo implements Serializable {
                 ", lock=" + lock +
                 ", lockTime='" + lockTime + '\'' +
                 ", isOverdue=" + isOverdue +
-                ", image='" + image + '\'' +
-                ", remainderDays=" + remainderDays +
+                ", avatar='" + avatar + '\'' +
+                ", isEnabled=" + isEnabled +
                 '}';
     }
 
@@ -65,10 +65,8 @@ public class UserDetailInfo implements Serializable {
 
         if (userCode != null ? !userCode.equals(that.userCode) : that.userCode != null) return false;
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
-        if (layout != null ? !layout.equals(that.layout) : that.layout != null) return false;
-        if (pageSize != null ? !pageSize.equals(that.pageSize) : that.pageSize != null) return false;
-        if (theme != null ? !theme.equals(that.theme) : that.theme != null) return false;
-        if (language != null ? !language.equals(that.language) : that.language != null) return false;
+        if (userPassword != null ? !userPassword.equals(that.userPassword) : that.userPassword != null) return false;
+        if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
         if (defaultRole != null ? !defaultRole.equals(that.defaultRole) : that.defaultRole != null) return false;
         if (defaultRoleName != null ? !defaultRoleName.equals(that.defaultRoleName) : that.defaultRoleName != null)
             return false;
@@ -82,18 +80,16 @@ public class UserDetailInfo implements Serializable {
         if (lock != null ? !lock.equals(that.lock) : that.lock != null) return false;
         if (lockTime != null ? !lockTime.equals(that.lockTime) : that.lockTime != null) return false;
         if (isOverdue != null ? !isOverdue.equals(that.isOverdue) : that.isOverdue != null) return false;
-        if (image != null ? !image.equals(that.image) : that.image != null) return false;
-        return remainderDays != null ? remainderDays.equals(that.remainderDays) : that.remainderDays == null;
+        if (avatar != null ? !avatar.equals(that.avatar) : that.avatar != null) return false;
+        return isEnabled != null ? isEnabled.equals(that.isEnabled) : that.isEnabled == null;
     }
 
     @Override
     public int hashCode() {
         int result = userCode != null ? userCode.hashCode() : 0;
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
-        result = 31 * result + (layout != null ? layout.hashCode() : 0);
-        result = 31 * result + (pageSize != null ? pageSize.hashCode() : 0);
-        result = 31 * result + (theme != null ? theme.hashCode() : 0);
-        result = 31 * result + (language != null ? language.hashCode() : 0);
+        result = 31 * result + (userPassword != null ? userPassword.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (defaultRole != null ? defaultRole.hashCode() : 0);
         result = 31 * result + (defaultRoleName != null ? defaultRoleName.hashCode() : 0);
         result = 31 * result + (roles != null ? roles.hashCode() : 0);
@@ -105,8 +101,8 @@ public class UserDetailInfo implements Serializable {
         result = 31 * result + (lock != null ? lock.hashCode() : 0);
         result = 31 * result + (lockTime != null ? lockTime.hashCode() : 0);
         result = 31 * result + (isOverdue != null ? isOverdue.hashCode() : 0);
-        result = 31 * result + (image != null ? image.hashCode() : 0);
-        result = 31 * result + (remainderDays != null ? remainderDays.hashCode() : 0);
+        result = 31 * result + (avatar != null ? avatar.hashCode() : 0);
+        result = 31 * result + (isEnabled != null ? isEnabled.hashCode() : 0);
         return result;
     }
 }

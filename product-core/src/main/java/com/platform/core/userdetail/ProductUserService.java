@@ -14,7 +14,7 @@ public class ProductUserService {
     public ProductUserService() {
     }
 
-    public ProductUser queryPcmcUser(String username) {
+    public ProductUser queryProductUser(String username) {
         return productUserMapper.selectById(username);
     }
 

@@ -72,7 +72,7 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
         return new LoginFailureHandler();
     }
 
-//    @Conditional({IsPcmcCondition.class})
+    //    @Conditional({IsPcmcCondition.class})
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -88,14 +88,13 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     }
 
     private static final String[] URL_WHITELIST = {
-            "/auth/system/system/kaptcha",
-            "/favicon.ico",
-
+            "/auth/system/kaptcha",
+            "/auth/system/login"
     };
 
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         ((HttpSecurity)((HttpSecurity)((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl)((HttpSecurity)((HttpSecurity)((HttpSecurity)httpSecurity.csrf().disable()).cors().and()).sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and())
-                .authorizeRequests().antMatchers(URL_WHITELIST))
+                .authorizeRequests().anyRequest())
                 .authenticated().and()).exceptionHandling().accessDeniedHandler(new ProductAccessDeniedHandler()).authenticationEntryPoint(new ProductAuthenticationEntryPoint()).and())
                 .addFilterBefore(this.jwtTokenDebugFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterAfter(this.jwtAuthorizationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
@@ -115,7 +114,7 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
                 "/swagger-resources/**", "/configuration/ui",
                 "/configuration/security", "/swagger-ui.html/**",
                 "/webjars/**", "/druid/**", "/actuator/**",
-                "/oauth/**", "/rest/**",
+                "/auth/system/kaptcha", "/auth/system/kaptcha", "/rest/**",
                 "/messageServer/**", "/app/**"});
     }
 
