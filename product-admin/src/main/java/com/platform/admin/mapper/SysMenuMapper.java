@@ -1,11 +1,10 @@
 package com.platform.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.platform.admin.entity.SysMenu;
+import com.platform.common.pojo.admin.SysMenu;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * (SysMenu)表数据库访问层

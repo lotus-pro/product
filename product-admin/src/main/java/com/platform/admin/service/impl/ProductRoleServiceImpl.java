@@ -6,29 +6,37 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.admin.mapper.ProductRoleMapper;
 import com.platform.admin.service.ProductRoleService;
-import com.platform.core.entity.ProductRole;
+import com.platform.common.pojo.admin.ProductRole;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * (SysRole)表服务实现类
+ * (ProductRole)表服务实现类
  *
  * @author zengzheng
- * @since 2021-05-14 10:22:41
+ * @since 2021-06-20 09:22:38
  */
 @Service
-public class SysRoleServiceImpl extends ServiceImpl<ProductRoleMapper, ProductRole> implements ProductRoleService {
+public class ProductRoleServiceImpl extends ServiceImpl<ProductRoleMapper, ProductRole> implements ProductRoleService {
     
     @Override
-    public IPage<ProductRole> queryPage(IPage page, ProductRole sysRole) {
+    public IPage<ProductRole> queryPage(IPage page, ProductRole productRole) {
         LambdaQueryWrapper<ProductRole> wrapper = new QueryWrapper<ProductRole>().lambda();
         return baseMapper.selectPage(page, wrapper);
     }
 
     @Override
-    public List<ProductRole> queryList(ProductRole sysRole) {
+    public List<ProductRole> queryList(ProductRole productRole) {
         LambdaQueryWrapper<ProductRole> wrapper = new QueryWrapper<ProductRole>().lambda();
         return baseMapper.selectList(wrapper);
+    }
+
+    @Override
+    public List<ProductRole> listRolesByUserId(String userId) {
+        List<ProductRole> sysRoles = this.list(new QueryWrapper<ProductRole>()
+                .inSql("role_code", "select role_code from sys_user_role where user_code = '" + userId + "'"));
+
+        return sysRoles;
     }
 }

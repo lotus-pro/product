@@ -9,9 +9,6 @@ spring:
     name: product-core
   main:
     allow-bean-definition-overriding: true
-  #==============国际化配置=============
-  messages:
-    basename: i18n/messages,com.sunline.jraf.messages
 #指定log配置
 logging:
   level:

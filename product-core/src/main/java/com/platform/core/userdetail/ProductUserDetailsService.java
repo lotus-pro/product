@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class ProductUserDetailsService implements UserDetailsService {
 
     @Autowired
-    ProductUserService productUserService;
+    UserService productUserService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

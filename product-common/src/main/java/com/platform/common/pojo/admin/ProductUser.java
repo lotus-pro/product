@@ -8,7 +8,9 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ProductUser implements Serializable {
     @TableId("user_code")
@@ -75,6 +77,9 @@ public class ProductUser implements Serializable {
     private String isEnabled;
     @TableField("update_password_flag")
     private String updatePasswordFlag;
+    @TableField(exist = false)
+    private List<ProductRole> sysRoles = new ArrayList<>();
+
 
     public String getUserCode() {
         return this.userCode;
@@ -178,6 +183,14 @@ public class ProductUser implements Serializable {
 
     public void setPhone(final String phone) {
         this.phone = phone;
+    }
+
+    public List<ProductRole> getSysRoles() {
+        return sysRoles;
+    }
+
+    public void setSysRoles(List<ProductRole> sysRoles) {
+        this.sysRoles = sysRoles;
     }
 
     @Override

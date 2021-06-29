@@ -2,7 +2,7 @@ package com.platform.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.platform.admin.entity.SysUserRole;
+import com.platform.common.pojo.admin.SysUserRole;
 
 import java.util.List;
 

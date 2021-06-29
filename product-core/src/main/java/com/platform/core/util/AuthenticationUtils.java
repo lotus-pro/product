@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.platform.common.cache.Cache;
 import com.platform.common.constants.CacheConstants;
 import com.platform.common.context.SpringContext;
-import com.platform.core.entity.ProductRole;
+import com.platform.common.pojo.admin.ProductRole;
 import com.platform.core.entity.UserDetailInfo;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;

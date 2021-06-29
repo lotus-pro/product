@@ -1,4 +1,4 @@
-package com.platform.admin.entity;
+package com.platform.common.pojo.admin;
 
 import java.io.Serializable;
 import lombok.Data;

@@ -2,10 +2,10 @@ package com.platform.admin.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Maps;
-import com.platform.admin.entity.SysMenu;
-import com.platform.admin.entity.SysUserRole;
-import com.platform.admin.service.SysMenuService;
+import com.platform.common.pojo.admin.SysMenu;
+import com.platform.common.pojo.admin.SysUserRole;
 import com.platform.admin.service.ProductRoleService;
+import com.platform.admin.service.SysMenuService;
 import com.platform.admin.service.SysUserRoleService;
 import com.platform.common.util.BeanUtil;
 import com.platform.common.web.BaseController;
@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,8 +61,6 @@ public class SysMenuController extends BaseController {
         List<SysUserRole> sysUserRoles = sysUserRoleService.queryList(sysUserRole);
         String roleCodes = sysUserRoles.stream().map(r -> "ROLE_" + r.getRoleCode()).collect(Collectors.joining(","));
         String authority = roleCodes.concat(",");
-//        ProductRole defaultRole = AuthenticationUtils.getDefaultRole(); //默认角色
-//        List<SysMenu> sysMenus = sysMenuService.queryRoleOfMenu(defaultRole.getRoleCode());
         List<SysMenu> sysMenus = sysMenuService.queryRoleOfMenu("admin");
         String menuPerms = "";
         sysMenus.forEach( t -> {
@@ -73,8 +72,26 @@ public class SysMenuController extends BaseController {
         List<SysMenu> navs = sysMenuService.buildTreeMenu(sysMenus);
         HashMap<String, Object> map = Maps.newHashMap();
         map.put("authoritys", authorityInfoArray);
-        map.put("nav", navs);
+        map.put("nav", convert(navs));
         return result(map);
+    }
+
+    private List<Map<String, Object>> convert(List<SysMenu> menuTree) {
+        List<Map<String, Object>> menuDtos = new ArrayList<>();
+        menuTree.forEach(m -> {
+            Map<String, Object> map = Maps.newHashMap();
+            map.put("id", m.getId());
+            map.put("menuName", m.getMenPerms());
+            map.put("title", m.getMenuName());
+            map.put("component", m.getComponent());
+            map.put("menuPath", m.getMenuPath());
+            if (m.getChildren().size() > 0) {
+                // 子节点调用当前方法进行再次转换
+                map.put("children", convert(m.getChildren()));
+            }
+            menuDtos.add(map);
+        });
+        return menuDtos;
     }
 
     @ApiOperation("新增")

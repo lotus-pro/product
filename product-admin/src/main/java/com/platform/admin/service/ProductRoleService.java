@@ -2,7 +2,7 @@ package com.platform.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.platform.core.entity.ProductRole;
+import com.platform.common.pojo.admin.ProductRole;
 
 import java.util.List;
 
@@ -17,4 +17,6 @@ public interface ProductRoleService extends IService<ProductRole> {
         IPage<ProductRole> queryPage(IPage page, ProductRole sysRole);
 
         List<ProductRole> queryList(ProductRole sysRole);
+
+        List<ProductRole> listRolesByUserId(String userId);
 }

@@ -2,7 +2,7 @@ package com.platform.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Component;
-import com.platform.admin.entity.SysUserRole;
+import com.platform.common.pojo.admin.SysUserRole;
 
 /**
  * (SysUserRole)表数据库访问层

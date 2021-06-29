@@ -5,10 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.admin.mapper.SysUserRoleMapper;
-import com.platform.admin.entity.SysUserRole;
+import com.platform.common.pojo.admin.SysUserRole;
 import com.platform.admin.service.SysUserRoleService;
-import com.platform.core.entity.UserDetailInfo;
-import com.platform.core.util.AuthenticationUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

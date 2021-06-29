@@ -5,7 +5,7 @@
     <sql id="Base_Column_List">
         id, user_code, role_code    </sql>
 
-    <resultMap id="BaseResultMap" type="com.platform.admin.entity.SysUserRole">
+    <resultMap id="BaseResultMap" type="com.platform.common.pojo.admin.SysUserRole">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="userCode" column="user_code" jdbcType="VARCHAR"/>
         <result property="roleCode" column="role_code" jdbcType="VARCHAR"/>

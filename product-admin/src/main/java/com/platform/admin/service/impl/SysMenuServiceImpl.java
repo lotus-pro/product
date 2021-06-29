@@ -1,18 +1,16 @@
 package com.platform.admin.service.impl;
 
-import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.admin.mapper.SysMenuMapper;
-import com.platform.admin.entity.SysMenu;
+import com.platform.common.pojo.admin.SysMenu;
 import com.platform.admin.service.SysMenuService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * (SysMenu)表服务实现类

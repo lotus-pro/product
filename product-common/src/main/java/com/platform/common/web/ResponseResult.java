@@ -47,6 +47,7 @@ public class ResponseResult<T> implements Serializable {
     }
 
     private static PageParam initPageParam(IPage<?> iPage) {
+        PageParam pageParam = new PageParam();
         pageParam.setPageNumber(iPage.getCurrent());
         pageParam.setPageSize(iPage.getSize());
         pageParam.setTotal(iPage.getTotal());

@@ -1,12 +1,13 @@
 package com.platform.admin.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.platform.admin.service.ProductRoleService;
+import com.platform.admin.service.ProductUserService;
 import com.platform.common.pojo.admin.ProductUser;
 import com.platform.common.util.BeanUtil;
 import com.platform.common.web.BaseController;
 import com.platform.common.web.ResponseResult;
 import com.platform.core.entity.UserDetailInfo;
-import com.platform.core.userdetail.ProductUserService;
 import com.platform.core.util.AuthenticationUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,6 +33,8 @@ public class ProductUserController extends BaseController {
 
     @Autowired
     private ProductUserService productUserService;
+    @Autowired
+    private ProductRoleService productRoleService;
 
     @ApiOperation("列表分页查询")
     @GetMapping("/page")
@@ -67,13 +70,21 @@ public class ProductUserController extends BaseController {
 //        productUserService.updateById(productUser);
         return result();
     }
-    
-    @ApiOperation("单个查询")
-    @PostMapping("/unique")
-    public ResponseResult uniqueOne(@RequestBody ProductUser productUser) {
-        String userCode = productUser.getUserCode();
-//        productUser = productUserService.getById(userCode);
-        return result(productUser);
+
+    @ApiOperation("获取用户分页列表")
+    @GetMapping("/list")
+//    @PreAuthorize("hasAuthority('sys:user:list')")
+    public ResponseResult list(Map<String, Object> params) {
+        IPage<ProductUser> iPage = getIPage(params);
+        ProductUser productUser = BeanUtil.mapToBean(params, ProductUser.class);
+        iPage =  productUserService.queryPage(iPage, productUser);
+
+        iPage.getRecords().forEach(u -> {
+
+            u.setSysRoles(productRoleService.listRolesByUserId(u.getUserCode()));
+        });
+
+        return result(iPage);
     }
 
     @ApiOperation("删除")

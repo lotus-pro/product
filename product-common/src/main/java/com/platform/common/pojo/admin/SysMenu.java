@@ -1,4 +1,4 @@
-package com.platform.admin.entity;
+package com.platform.common.pojo.admin;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;

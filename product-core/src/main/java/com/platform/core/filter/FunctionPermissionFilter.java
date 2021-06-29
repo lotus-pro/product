@@ -1,7 +1,6 @@
 package com.platform.core.filter;
 
 import com.platform.common.util.ResponseUtil;
-import com.platform.core.entity.ProductRole;
 import com.platform.core.entity.UserDetailInfo;
 import com.platform.core.util.AuthenticationUtils;
 import org.apache.commons.lang3.StringUtils;

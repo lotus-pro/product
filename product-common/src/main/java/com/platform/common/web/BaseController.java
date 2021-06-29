@@ -2,7 +2,6 @@ package com.platform.common.web;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.platform.common.util.RequestUtil;
-import com.platform.common.web.ResponseResult;
 
 import java.util.List;
 import java.util.Map;

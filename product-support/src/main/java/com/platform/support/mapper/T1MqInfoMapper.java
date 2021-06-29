@@ -1,7 +1,6 @@
 package com.platform.support.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.platform.common.pojo.admin.TestUser;
 import com.platform.common.pojo.support.T1MqInfo;
 import org.springframework.stereotype.Component;
 

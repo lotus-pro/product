@@ -46,7 +46,6 @@ public class PageParam implements Serializable {
     }
 
     public int hashCode() {
-//        int PRIME = true;
         int result = 1;
         long $pageNumber = this.getPageNumber();
         result = result * 59 + (int)($pageNumber >>> 32 ^ $pageNumber);

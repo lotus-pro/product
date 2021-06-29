@@ -1,17 +1,17 @@
 package com.platform.core.userdetail;
 
 import com.platform.common.pojo.admin.ProductUser;
-import com.platform.core.mapper.ProductUserMapper;
+import com.platform.core.mapper.DetailUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductUserService {
+public class UserService {
 
     @Autowired
-    ProductUserMapper productUserMapper;
+    DetailUserMapper productUserMapper;
 
-    public ProductUserService() {
+    public UserService() {
     }
 
     public ProductUser queryProductUser(String username) {

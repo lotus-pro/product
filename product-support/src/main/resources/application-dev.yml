@@ -11,9 +11,9 @@ spring:
       primary: pcmc #应用默认使用数据源
       datasource:
         pcmc:
-          url: jdbc:mysql://10.22.50.133:3306/z-test?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useLegacyDatetimeCode=false&serverTimezone=UTC
+          url: jdbc:mysql://47.106.156.205:3306/platform?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useLegacyDatetimeCode=false&serverTimezone=UTC
           username: root
-          password: Sunline!666
+          password: 123456
   cloud:
     nacos:
       discovery:
@@ -21,8 +21,8 @@ spring:
         enabled: true
 #==============redis配置==============
   redis:
-    host: 10.22.50.134
-    password: boss666
+    host: 47.106.156.205
+    password: 123321
     port: 6379
     timeout: 5000
     database: 1

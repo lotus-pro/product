@@ -2,10 +2,9 @@ package com.platform.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.platform.admin.entity.SysMenu;
+import com.platform.common.pojo.admin.SysMenu;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * (SysMenu)表服务接口
