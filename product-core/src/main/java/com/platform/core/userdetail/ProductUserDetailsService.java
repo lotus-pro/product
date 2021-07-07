@@ -9,15 +9,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 @Service
 public class ProductUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    UserService productUserService;
+    @Resource
+    UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        ProductUser productUser = this.productUserService.queryProductUser(username);
+        ProductUser productUser = this.userService.queryProductUser(username);
         if (null == productUser) {
             throw new UsernameNotFoundException("product.error.00003");
         } else {

@@ -1,9 +1,9 @@
 package com.platform.common.pojo.admin;
 
-import java.io.Serializable;
-import lombok.Data;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * (SysUserRole)表实体类

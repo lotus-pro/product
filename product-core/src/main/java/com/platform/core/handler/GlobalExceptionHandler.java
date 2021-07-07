@@ -3,7 +3,6 @@ package com.platform.core.handler;
 import com.platform.common.exception.CommonException;
 import com.platform.common.util.RequestUtil;
 import com.platform.common.web.ResponseResult;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,15 +39,7 @@ public class GlobalExceptionHandler {
             log.error("Exception异常", e);
         }
 
-        String eClass = e.getClass().getName();
-        String activitiExceptionClass = "org.activiti.engine.ActivitiException";
-        return activitiExceptionClass.equals(eClass) ? this.handleWorkflowException(e) : ResponseResult.error("product.error.00006", new Object[0]);
-    }
-
-    private Object handleWorkflowException(Exception e) {
-        log.error("WorkflowException异常", e);
-        String message = e.getCause() != null && !StringUtils.isBlank(e.getCause().getMessage()) ? e.getCause().getMessage() : "product.error.00006";
-        return ResponseResult.error(message, new Object[0]);
+        return ResponseResult.error("product.error.00006", new Object[0]);
     }
 
 //    @ExceptionHandler({RestException.class})

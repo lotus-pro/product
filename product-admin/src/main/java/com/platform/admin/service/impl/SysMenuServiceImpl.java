@@ -55,4 +55,13 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         }
         return finalMenus;
     }
+
+    @Override
+    public List<SysMenu> tree() {
+        // 获取所有菜单信息
+        List<SysMenu> sysMenus = this.list(new QueryWrapper<SysMenu>().orderByAsc("order_num"));
+
+        // 转成树状结构
+        return buildTreeMenu(sysMenus);
+    }
 }

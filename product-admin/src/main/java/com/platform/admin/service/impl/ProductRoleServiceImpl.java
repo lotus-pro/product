@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.admin.mapper.ProductRoleMapper;
 import com.platform.admin.service.ProductRoleService;
 import com.platform.common.pojo.admin.ProductRole;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +23,9 @@ public class ProductRoleServiceImpl extends ServiceImpl<ProductRoleMapper, Produ
     
     @Override
     public IPage<ProductRole> queryPage(IPage page, ProductRole productRole) {
+        String roleName = productRole.getRoleName();
         LambdaQueryWrapper<ProductRole> wrapper = new QueryWrapper<ProductRole>().lambda();
+        wrapper.like(StringUtils.isNotBlank(roleName),ProductRole::getRoleName, roleName);
         return baseMapper.selectPage(page, wrapper);
     }
 

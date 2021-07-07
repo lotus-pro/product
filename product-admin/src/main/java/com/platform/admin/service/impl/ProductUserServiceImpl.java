@@ -34,4 +34,5 @@ public class ProductUserServiceImpl extends ServiceImpl<ProductUserMapper, Produ
         LambdaQueryWrapper<ProductUser> wrapper = new QueryWrapper<ProductUser>().lambda();
         return baseMapper.selectList(wrapper);
     }
+
 }

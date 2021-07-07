@@ -2,14 +2,15 @@ package com.platform.admin.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.common.collect.Maps;
+import com.platform.admin.service.ProductUserService;
 import com.platform.admin.thread.TestThread;
 import com.platform.admin.util.ThreadPoolUtil;
 import com.platform.common.cache.Cache;
 import com.platform.common.pojo.admin.ProductUser;
 import com.platform.common.util.IpUtils;
+import com.platform.common.util.RequestUtil;
 import com.platform.common.web.BaseController;
 import com.platform.common.web.ResponseResult;
-import com.platform.core.userdetail.UserService;
 import com.platform.core.util.AuthenticationUtils;
 import com.platform.core.util.JWTUtils;
 import io.swagger.annotations.Api;
@@ -36,7 +37,7 @@ import java.util.concurrent.TimeUnit;
 public class LoginController extends BaseController {
 
     @Autowired
-    UserService productUserService;
+    ProductUserService productUserService;
     @Autowired
     DefaultKaptcha defaultKaptcha;
     @Autowired
@@ -46,18 +47,20 @@ public class LoginController extends BaseController {
 
     @ApiOperation("验证码获取")
     @GetMapping("/system/kaptcha")
-    public ResponseResult login(HttpServletRequest request) {
+    public ResponseResult login() {
         ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
         String base64Img = null;
         try {
             // 生产验证码字符串并保存到redis中
             String createText = defaultKaptcha.createText();
+            System.out.println("验证码" + createText);
             // 使用生成的验证码字符串返回一个BufferedImage对象并转为byte写入到byte数组中
             BufferedImage challenge = defaultKaptcha.createImage(createText);
             ImageIO.write(challenge, "jpg", jpegOutputStream);
             BASE64Encoder encoder = new BASE64Encoder();
             String str = "data:image/jpeg;base64,";
             base64Img = str + encoder.encode(jpegOutputStream.toByteArray());
+            HttpServletRequest request = RequestUtil.getRequest();
             String ipAddr = IpUtils.getIpAddr(request).replaceAll("\\.", "");
             cache.set("captcha" + ipAddr, createText, 60, TimeUnit.SECONDS);
         } catch (IOException e) {
@@ -104,7 +107,7 @@ public class LoginController extends BaseController {
     public ResponseResult loginSucces(@RequestBody Map<String, Object> params) {
         String username = (String)params.get("username");
         Map<String, Object> map = Maps.newHashMap();
-        ProductUser productUser = productUserService.queryProductUser(username);
+        ProductUser productUser = productUserService.getById(username);
         map.put("userInfo", productUser);
         map.put("access_token_expire_timestamp", 1800);
         map.put("identity", username);

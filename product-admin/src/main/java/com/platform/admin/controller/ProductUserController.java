@@ -38,7 +38,7 @@ public class ProductUserController extends BaseController {
 
     @ApiOperation("列表分页查询")
     @GetMapping("/page")
-    public ResponseResult queryList(@RequestParam Map<String, Object> params) {
+    public ResponseResult queryList(Map<String, Object> params) {
         Object pageSize = params.get("pageSize");
         Object currentPage = params.get("currentPage");
         boolean isPage = true;
@@ -49,7 +49,7 @@ public class ProductUserController extends BaseController {
         List<ProductUser> resList = new ArrayList<ProductUser>();
         ProductUser productUser = BeanUtil.mapToBean(params, ProductUser.class);
         if (isPage) {
-//            page = productUserService.queryPage(page, productUser);
+            page = productUserService.page(page);
             return result(page);
         } else {
 //            resList = productUserService.queryList(productUser);

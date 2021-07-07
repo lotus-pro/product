@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * (ProductRole)表实体类
@@ -52,6 +53,6 @@ public class ProductRole implements Serializable {
     /**
     * 状态
     */                        
-    private Integer isEnabled;
+    private String isEnabled;
             
 }

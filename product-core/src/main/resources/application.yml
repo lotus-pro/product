@@ -13,7 +13,7 @@ spring:
 logging:
   level:
     com.platform: debug
-    org.springframework: warn
+    org.springframework: debug
 
 #feign的超时时间, 防止feign调用超时
 feign:

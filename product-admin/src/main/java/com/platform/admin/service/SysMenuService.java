@@ -14,13 +14,13 @@ import java.util.List;
  */
 public interface SysMenuService extends IService<SysMenu> {
 
-        IPage<SysMenu> queryPage(IPage page, SysMenu sysMenu);
+    IPage<SysMenu> queryPage(IPage page, SysMenu sysMenu);
 
-        List<SysMenu> queryList(SysMenu sysMenu);
+    List<SysMenu> queryList(SysMenu sysMenu);
 
-        List<SysMenu> queryRoleOfMenu(String roleCode);
+    List<SysMenu> queryRoleOfMenu(String roleCode);
 
-        List<SysMenu> buildTreeMenu(List<SysMenu> menus);
+    List<SysMenu> buildTreeMenu(List<SysMenu> menus);
 
-
+    List<SysMenu> tree();
 }

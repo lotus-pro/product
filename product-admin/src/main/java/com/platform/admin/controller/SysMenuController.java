@@ -2,11 +2,11 @@ package com.platform.admin.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Maps;
-import com.platform.common.pojo.admin.SysMenu;
-import com.platform.common.pojo.admin.SysUserRole;
 import com.platform.admin.service.ProductRoleService;
 import com.platform.admin.service.SysMenuService;
 import com.platform.admin.service.SysUserRoleService;
+import com.platform.common.pojo.admin.SysMenu;
+import com.platform.common.pojo.admin.SysUserRole;
 import com.platform.common.util.BeanUtil;
 import com.platform.common.web.BaseController;
 import com.platform.common.web.ResponseResult;
@@ -15,6 +15,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -120,6 +121,14 @@ public class SysMenuController extends BaseController {
     public ResponseResult deleteDataInfo(@RequestParam String id) {
         sysMenuService.removeById(id);
         return result();
+    }
+
+    @GetMapping("/list")
+//    @PreAuthorize("hasAuthority('sys:menu:list')")
+    public ResponseResult list() {
+
+        List<SysMenu> menus = sysMenuService.tree();
+        return result(menus);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.platform.admin.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.common.pojo.admin.ProductUser;
 
 import java.util.List;
@@ -17,4 +17,5 @@ public interface ProductUserService extends IService<ProductUser> {
     IPage<ProductUser> queryPage(IPage page, ProductUser productUser);
 
     List<ProductUser> queryList(ProductUser productUser);
+
 }
