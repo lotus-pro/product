@@ -15,6 +15,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @MapperScan({"com.platform.**.mapper"})
 @EnableAsync //开启异步调用
 @Slf4j
+//@EnableOpenApi
 public class ProductAdminApplication {
 
 	public static void main(String[] args) {

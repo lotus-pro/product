@@ -3,7 +3,6 @@ package com.platform.common.pojo.admin;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -33,10 +32,6 @@ public class ProductUser implements Serializable {
     @Excel(
             name = "*用户名称",
             isImportField = "true"
-    )
-    @Length(
-            max = 256,
-            message = "{pcmc.user.error.0021}"
     )
     private String userName;
     @TableField("user_password")
@@ -257,19 +252,8 @@ public class ProductUser implements Serializable {
 
     public ProductUser() {
     }
-    public ProductUser(@NotBlank(
-            message = "{pcmc.user.valid.0001}"
-    ) @Pattern(
-            regexp = "^[a-zA-Z0-9]{4,16}",
-            message = "{pcmc.user.valid.0003}"
-    ) String userCode, @NotBlank(
-            message = "{pcmc.user.valid.0002}"
-    ) @Length(
-            max = 256,
-            message = "{pcmc.user.error.0021}"
-    ) String userName, String userPassword, String phone, String avatar, String menuType, String skinCode, String lastRole, String defaultRole, Date updatePasswordDate, Integer updatePasswordDays, @NotBlank(
-            message = "{jraf.valid.0001}"
-    ) String isEnabled, String updatePasswordFlag) {
+    public ProductUser(String userCode,String userName, String userPassword, String phone, String avatar, String menuType, String skinCode, String lastRole, String defaultRole, Date updatePasswordDate, Integer updatePasswordDays,
+         String isEnabled, String updatePasswordFlag) {
         this.userCode = userCode;
         this.userName = userName;
         this.userPassword = userPassword;

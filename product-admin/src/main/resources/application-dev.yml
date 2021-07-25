@@ -17,7 +17,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 10.22.50.134:8848
+        server-addr: 47.106.156.205:8848
         enabled: true
   #==============redis配置==============
   redis:
@@ -26,11 +26,3 @@ spring:
     port: 6379
     timeout: 5000
     database: 1
-#mq的配置
-#rocketmq:
-#  name-server: 127.0.0.1:9876
-#  producer:
-#    group: ${spring.application.name}
-#    retry-times-when-send-async-failed: 1
-#  consumer:
-#    group: ${spring.application.name}

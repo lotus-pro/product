@@ -1,13 +1,16 @@
 package com.platform.common.pojo.admin;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * (ProductRole)表实体类
@@ -54,5 +57,8 @@ public class ProductRole implements Serializable {
     * 状态
     */                        
     private String isEnabled;
+
+    @TableField(exist = false)
+    private List<Long> menuIds = new ArrayList<>();
             
 }

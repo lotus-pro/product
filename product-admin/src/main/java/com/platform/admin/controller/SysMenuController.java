@@ -15,7 +15,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +31,7 @@ import java.util.stream.Collectors;
  * @since 2021-05-12 16:31:53
  */
 @Slf4j
-@Api(tags = {"自定义"})
+@Api(tags = {"菜单类"})
 @RestController
 @RequestMapping("/sysMenu")
 public class SysMenuController extends BaseController {
@@ -44,7 +43,7 @@ public class SysMenuController extends BaseController {
     @Autowired
     private SysUserRoleService sysUserRoleService;
 
-    @ApiOperation("分页查询")
+    @ApiOperation("菜单分页查询")
     @GetMapping("/page")
     public ResponseResult queryPage(@RequestParam Map<String, Object> params) {
         IPage<SysMenu> page = getIPage(params);

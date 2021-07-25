@@ -84,7 +84,8 @@ public class LoginController extends BaseController {
 //            threadPoolUtil.execute(testThread);
 //        }
 //        threadPoolUtil.aa();
-        return result(base64Img);
+        ProductUser productUser = productUserService.getById("zengzheng");
+        return result(productUser);
     }
 
     public static void main(String[] args) throws Exception {

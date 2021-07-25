@@ -72,7 +72,7 @@ public class SwaggerConfiguration {
         return Lists.newArrayList(new SecurityReference[]{new SecurityReference(TOKEN, authorizationScopes)});
     }
 
-    private List<ApiKey> securitySchemes() {
+    private List<SecurityScheme> securitySchemes() {
         return Lists.newArrayList(new ApiKey[]{new ApiKey(TOKEN, TOKEN, "header")});
     }
 

@@ -54,17 +54,17 @@ public class LoginPreFilter extends OncePerRequestFilter {
             String password = loginPostProcessor.obtainPassword(parameterRequestWrapper);
             String checkCode = loginPostProcessor.obtainIdentifyCode(parameterRequestWrapper);
 
-            String ipAddr = IpUtils.getIpAddr(request).replaceAll("\\.", "");
-            String code = cache.get("captcha" + ipAddr, String.class);
-            if (StringUtils.isBlank(code) || StringUtils.isBlank(checkCode)) {
-                ResponseUtil.filterResponseResultError(request, response, "product.error.00007");
-                return;
-            }
-            if (!code.equals(checkCode)) {
-                ResponseUtil.filterResponseResultError(request, response, "product.error.00008");
-                return;
-            }
-            cache.del("captcha" + ipAddr);
+//            String ipAddr = IpUtils.getIpAddr(request).replaceAll("\\.", "");
+//            String code = cache.get("captcha" + ipAddr, String.class);
+//            if (StringUtils.isBlank(code) || StringUtils.isBlank(checkCode)) {
+//                ResponseUtil.filterResponseResultError(request, response, "product.error.00007");
+//                return;
+//            }
+//            if (!code.equals(checkCode)) {
+//                ResponseUtil.filterResponseResultError(request, response, "product.error.00008");
+//                return;
+//            }
+//            cache.del("captcha" + ipAddr);
 
             parameterRequestWrapper.setAttribute("username", username);
             parameterRequestWrapper.setAttribute("password", password);

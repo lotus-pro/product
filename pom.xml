@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.9.RELEASE</version>
+        <version>2.3.12.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -18,7 +18,6 @@
 
     <modules>
         <module>product-admin</module>
-        <module>product-support</module>
         <module>product-common</module>
         <module>product-core</module>
     </modules>
@@ -29,48 +28,40 @@
         <spring.cloud.version>Greenwich.SR6</spring.cloud.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!--<pagehelper.spring.boot.starter.version>1.2.5</pagehelper.spring.boot.starter.version>-->
-        <!--<feign.httpclient.version>10.4.0</feign.httpclient.version>-->
-        <!--<feign.hjackson.version>10.4.0</feign.hjackson.version>-->
-        <mybatis.spring.boot.starter.version>2.1.1</mybatis.spring.boot.starter.version>
+        <mybatis.spring.boot.starter.version>2.1.3</mybatis.spring.boot.starter.version>
         <mybatis.plus.boot.starter.version>3.3.1</mybatis.plus.boot.starter.version>
-        <!--<mybatis.plus.generator.version>3.3.1</mybatis.plus.generator.version>-->
-        <!--<freemarker.version>2.3.28</freemarker.version>-->
         <dynamic.datasource.spring.boot.starter.version>3.0.0</dynamic.datasource.spring.boot.starter.version>
-        <fastjson.version>1.2.70</fastjson.version>
-        <druid.version>1.1.21</druid.version>
-        <commons.io.version>2.6</commons.io.version>
+        <fastjson.version>1.2.73</fastjson.version>
+        <druid.version>1.1.22</druid.version>
+        <commons.io.version>2.8.0</commons.io.version>
         <commons.lang.version>2.6</commons.lang.version>
         <commons.fileupload.version>1.3.3</commons.fileupload.version>
         <commons.pool2.version>2.5.0</commons.pool2.version>
         <bitwalker.version>1.19</bitwalker.version>
         <jwt.version>0.9.0</jwt.version>
         <swagger.version>2.9.2</swagger.version>
-        <poi.version>4.1.0</poi.version>
+        <poi.version>4.1.2</poi.version>
         <oshi.version>3.9.1</oshi.version>
         <velocity.version>1.7</velocity.version>
         <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
         <org.redisson.version>3.12.5</org.redisson.version>
-        <!--<easyexcel.version>2.1.6</easyexcel.version>-->
-        <eu.bitwalker.UserAgentUtils.version>1.21</eu.bitwalker.UserAgentUtils.version>
-        <net.lingala.zip4j.version>1.3.2</net.lingala.zip4j.version>
+        <userAgentUtils.version>1.21</userAgentUtils.version>
+        <net.lingala.zip4j.version>2.6.4</net.lingala.zip4j.version>
         <java.jwt.version>2.0.0</java.jwt.version>
         <bcprov.jdk15on.version>1.60</bcprov.jdk15on.version>
         <nacos.starter.version>2.1.2.RELEASE</nacos.starter.version>
         <guava.version>22.0</guava.version>
         <org.apache.ant.version>1.7.1</org.apache.ant.version>
-        <lombok.version>1.18.10</lombok.version>
+        <lombok.version>1.18.16</lombok.version>
         <commons.beanutils.version>1.8.3</commons.beanutils.version>
         <dom4j.version>2.1.1</dom4j.version>
         <mysql.version>5.1.46</mysql.version>
         <oracle.version>12.2.0.1</oracle.version>
-        <easypoi.version>4.2.0</easypoi.version>
+        <easypoi.version>4.4.0</easypoi.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.assembly.plugin.version>3.1.1</maven.assembly.plugin.version>
         <maven.antrun.plugin.version>1.8</maven.antrun.plugin.version>
-        <hutool.version>4.5.15</hutool.version>
-        <!--<spring.boot.admin.version>2.1.6</spring.boot.admin.version>-->
-        <!--<thumbnailator.version>0.4.11</thumbnailator.version>-->
+        <hutool.version>5.7.5</hutool.version>
         <kaptcha.version>2.3.2</kaptcha.version>
         <jasypt.version>3.0.3</jasypt.version>
     </properties>
@@ -80,49 +71,27 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
+                <version>Hoxton.SR12</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>io.github.openfeign</groupId>-->
-                <!--<artifactId>feign-httpclient</artifactId>-->
-                <!--<version>${feign.httpclient.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>io.github.openfeign</groupId>-->
-                <!--<artifactId>feign-jackson</artifactId>-->
-                <!--<version>${feign.hjackson.version}</version>-->
-            <!--</dependency>-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-openfeign-core</artifactId>
                 <version>2.1.5.RELEASE</version>
             </dependency>
-
-
             <!-- mybatis plus start -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis.plus.boot.starter.version}</version>
+                <version>3.3.1</version>
             </dependency>
-
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-                <version>${dynamic.datasource.spring.boot.starter.version}</version>
+                <version>3.0.0</version>
             </dependency>
-
             <!-- mybatis plus end -->
-
-            <!-- redis -->
-            <!-- <dependency>
-                 <groupId>org.springframework.boot</groupId>
-                 <artifactId>spring-boot-starter-data-redis</artifactId>
-                 <version>${spring.boot.version}</version>
-             </dependency>-->
-
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
@@ -134,49 +103,39 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
             <dependency>
-                <artifactId>redisson-spring-data-21</artifactId>
                 <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-data-21</artifactId>
                 <version>${org.redisson.version}</version>
             </dependency>
-
-
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-                <version>${nacos.starter.version}</version>
+                <version>2.2.1.RELEASE</version>
             </dependency>
-
             <!-- SpringBoot集成mybatis框架 -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.spring.boot.starter.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-typehandlers-jsr310</artifactId>
                 <version>1.0.2</version>
             </dependency>
-
             <!--阿里数据库连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>cn.afterturn</groupId>
                 <artifactId>easypoi-spring-boot-starter</artifactId>
                 <version>${easypoi.version}</version>
             </dependency>
-
             <!-- spring boot starter end -->
-
-
             <!-- Mysql驱动包 -->
             <dependency>
                 <groupId>mysql</groupId>
@@ -184,31 +143,22 @@
                 <version>${mysql.version}</version>
                 <scope>runtime</scope>
             </dependency>
-
             <dependency>
                 <artifactId>commons-io</artifactId>
                 <groupId>commons-io</groupId>
                 <version>${commons.io.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>${commons.lang.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>commons-lang</groupId>-->
+                <!--<artifactId>commons-lang</artifactId>-->
+                <!--<version>${commons.lang.version}</version>-->
+            <!--</dependency>-->
             <!--解析 User-Agent 字符串的 Java 类库-->
             <dependency>
                 <groupId>eu.bitwalker</groupId>
                 <artifactId>UserAgentUtils</artifactId>
-                <version>${eu.bitwalker.UserAgentUtils.version}</version>
+                <version>${userAgentUtils.version}</version>
             </dependency>
-            <!--解析 User-Agent 字符串的 Java 类库-->
-            <!--<dependency>-->
-                <!--<groupId>org.apache.commons</groupId>-->
-                <!--<artifactId>commons-pool2</artifactId>-->
-                <!--<version>${commons.pool2.version}</version>-->
-            <!--</dependency>-->
-
             <!-- POI -->
             <dependency>
                 <groupId>org.apache.poi</groupId>
@@ -223,7 +173,7 @@
                 <version>${net.lingala.zip4j.version}</version>
             </dependency>
 
-            <!-- JWT -->
+            <!-- JWT TODO-->
             <dependency>
                 <groupId>com.auth0</groupId>
                 <artifactId>java-jwt</artifactId>
@@ -231,11 +181,11 @@
             </dependency>
 
 
-            <dependency>
-                <groupId>org.bouncycastle</groupId>
-                <artifactId>bcprov-jdk15on</artifactId>
-                <version>${bcprov.jdk15on.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.bouncycastle</groupId>-->
+                <!--<artifactId>bcprov-jdk15on</artifactId>-->
+                <!--<version>${bcprov.jdk15on.version}</version>-->
+            <!--</dependency>-->
 
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -243,17 +193,17 @@
                 <version>${fastjson.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.google.guava</groupId>-->
+                <!--<artifactId>guava</artifactId>-->
+                <!--<version>${guava.version}</version>-->
+            <!--</dependency>-->
 
-            <dependency>
-                <groupId>org.apache.ant</groupId>
-                <artifactId>ant</artifactId>
-                <version>${org.apache.ant.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.ant</groupId>-->
+                <!--<artifactId>ant</artifactId>-->
+                <!--<version>${org.apache.ant.version}</version>-->
+            <!--</dependency>-->
 
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -262,18 +212,18 @@
             </dependency>
 
             <!-- mapStruct 对象转换 -->
-            <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct</artifactId>
-                <version>${org.mapstruct.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct-processor</artifactId>
-                <version>${org.mapstruct.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.mapstruct</groupId>-->
+                <!--<artifactId>mapstruct</artifactId>-->
+                <!--<version>${org.mapstruct.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.mapstruct</groupId>-->
+                <!--<artifactId>mapstruct-processor</artifactId>-->
+                <!--<version>${org.mapstruct.version}</version>-->
+            <!--</dependency>-->
 
-            <!-- swagger 生成api文档 -->
+            <!-- swagger 生成api文档 TODO -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
@@ -284,6 +234,12 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
+            <!--swagger3-->
+            <!--<dependency>-->
+                <!--<groupId>io.springfox</groupId>-->
+                <!--<artifactId>springfox-boot-starter</artifactId>-->
+                <!--<version>3.0.0</version>-->
+            <!--</dependency>-->
 
             <dependency>
                 <groupId>commons-beanutils</groupId>
@@ -291,63 +247,17 @@
                 <version>${commons.beanutils.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.dom4j</groupId>
-                <artifactId>dom4j</artifactId>
-                <version>${dom4j.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.dom4j</groupId>-->
+                <!--<artifactId>dom4j</artifactId>-->
+                <!--<version>${dom4j.version}</version>-->
+            <!--</dependency>-->
 
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
-
-            <!-- spring boot admin -->
-            <!--<dependency>-->
-                <!--<groupId>de.codecentric</groupId>-->
-                <!--<artifactId>spring-boot-admin-starter-server</artifactId>-->
-                <!--<version>${spring.boot.admin.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>de.codecentric</groupId>-->
-                <!--<artifactId>spring-boot-admin-starter-client</artifactId>-->
-                <!--<version>${spring.boot.admin.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>de.codecentric</groupId>-->
-                <!--<artifactId>spring-boot-admin-server-cloud</artifactId>-->
-                <!--<version>${spring.boot.admin.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>de.codecentric</groupId>-->
-                <!--<artifactId>spring-boot-admin-server</artifactId>-->
-                <!--<version>${spring.boot.admin.version}</version>-->
-            <!--</dependency>-->
-
-            <!--websocket-->
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-starter-websocket</artifactId>-->
-            <!--</dependency>-->
-
-            <!--            mybatisPlus代码生成器-->
-            <!--<dependency>-->
-                <!--<groupId>com.baomidou</groupId>-->
-                <!--<artifactId>mybatis-plus-generator</artifactId>-->
-                <!--<version>${mybatis.plus.generator.version}</version>-->
-            <!--</dependency>-->
-            <!-- freemarker 模板引擎 -->
-            <!--<dependency>-->
-                <!--<groupId>org.freemarker</groupId>-->
-                <!--<artifactId>freemarker</artifactId>-->
-                <!--<version>${freemarker.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>net.coobird</groupId>-->
-                <!--<artifactId>thumbnailator</artifactId>-->
-                <!--<version>${thumbnailator.version}</version>-->
-            <!--</dependency>-->
             <!-- 验证码 -->
             <dependency>
                 <groupId>com.github.penggle</groupId>
@@ -381,7 +291,6 @@
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -392,11 +301,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <!--<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>-->
 
         <!-- redis -->
         <dependency>
@@ -412,10 +316,6 @@
             <artifactId>redisson-spring-data-21</artifactId>
             <groupId>org.redisson</groupId>
         </dependency>
-        <!--<dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson</artifactId>
-        </dependency>-->
 
         <!-- mybatis plus -->
         <dependency>
@@ -432,10 +332,10 @@
             <groupId>commons-io</groupId>
         </dependency>
 
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>commons-lang</groupId>-->
+            <!--<artifactId>commons-lang</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>eu.bitwalker</groupId>
@@ -470,35 +370,35 @@
             <artifactId>fastjson</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15on</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.bouncycastle</groupId>-->
+            <!--<artifactId>bcprov-jdk15on</artifactId>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.google.guava</groupId>-->
+            <!--<artifactId>guava</artifactId>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.apache.ant</groupId>
-            <artifactId>ant</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.ant</groupId>-->
+            <!--<artifactId>ant</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
         <!--    mapstruct依赖-->
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-        </dependency>
-        <!-- Mysql驱动包 -->
+        <!--<dependency>-->
+            <!--<groupId>org.mapstruct</groupId>-->
+            <!--<artifactId>mapstruct-processor</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.mapstruct</groupId>-->
+            <!--<artifactId>mapstruct</artifactId>-->
+        <!--</dependency>-->
+        <!-- Mysql驱动包 TODO -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -510,12 +410,6 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
-
-        <!-- pagehelper 分页插件 -->
-        <!--  <dependency>
-              <groupId>com.github.pagehelper</groupId>
-              <artifactId>pagehelper-spring-boot-starter</artifactId>
-          </dependency>-->
 
         <!--阿里数据库连接池 -->
         <dependency>
@@ -532,16 +426,20 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>io.springfox</groupId>-->
+            <!--<artifactId>springfox-boot-starter</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils-core</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.dom4j</groupId>-->
+            <!--<artifactId>dom4j</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -561,11 +459,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven.compiler.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>${maven.assembly.plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
