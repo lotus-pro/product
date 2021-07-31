@@ -26,7 +26,7 @@ import java.util.Map;
  * @since 2021-04-23 08:52:46
  */
 @Slf4j
-@Api(tags = {"自定义"})
+@Api(tags = {"用户类"})
 @RestController
 @RequestMapping("/productUser")
 public class ProductUserController extends BaseController {
@@ -36,7 +36,7 @@ public class ProductUserController extends BaseController {
     @Autowired
     private ProductRoleService productRoleService;
 
-    @ApiOperation("列表分页查询")
+    @ApiOperation("用户类列表分页查询")
     @GetMapping("/page")
     public ResponseResult queryList(Map<String, Object> params) {
         Object pageSize = params.get("pageSize");
@@ -57,21 +57,21 @@ public class ProductUserController extends BaseController {
         }
     }
 
-    @ApiOperation("新增")
+    @ApiOperation("用户类新增")
     @PostMapping("/add")
     public ResponseResult saveDataInfo(@RequestBody ProductUser productUser) {
 //        productUserService.save(productUser);
         return result();
     }
 
-    @ApiOperation("修改")
+    @ApiOperation("用户类修改")
     @PostMapping("/update")
     public ResponseResult updateDataInfo(@RequestBody ProductUser productUser) {
 //        productUserService.updateById(productUser);
         return result();
     }
 
-    @ApiOperation("获取用户分页列表")
+    @ApiOperation("用户类获取用户分页列表")
     @GetMapping("/list")
 //    @PreAuthorize("hasAuthority('sys:user:list')")
     public ResponseResult list(Map<String, Object> params) {
@@ -87,13 +87,13 @@ public class ProductUserController extends BaseController {
         return result(iPage);
     }
 
-    @ApiOperation("删除")
+    @ApiOperation("用户类删除")
     @DeleteMapping("/delete")
     public ResponseResult deleteDataInfo(@RequestParam String id) {
         return result();
     }
 
-    @ApiOperation("获取用户信息")
+    @ApiOperation("用户类获取用户信息")
     @GetMapping("/userInfo")
     public ResponseResult getUserInfo() {
         UserDetailInfo currentUser = AuthenticationUtils.getCurrentUser();

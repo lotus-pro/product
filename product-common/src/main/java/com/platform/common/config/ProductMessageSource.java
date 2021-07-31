@@ -1,10 +1,10 @@
 package com.platform.common.config;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.map.MapUtil;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.platform.common.util.FilePathUtil;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -124,7 +124,7 @@ public class ProductMessageSource implements MessageSource {
 
     private Set<String> readI18nPackages(String i18nPackages) {
         Set<String> i18nPackageSet = Sets.newLinkedHashSet();
-        CollectionUtils.addAll(i18nPackageSet, JRAF_I18N_PACKAGES);
+        CollectionUtil.addAll(i18nPackageSet, JRAF_I18N_PACKAGES);
         if (StringUtils.isBlank(i18nPackages)) {
             return i18nPackageSet;
         } else {
@@ -275,7 +275,7 @@ public class ProductMessageSource implements MessageSource {
 
     @Override
     public String getMessage(@Nonnull String code, @Nonnull Object[] args, @Nonnull String defaultMessage, @Nonnull Locale locale) {
-        String messageValue = MapUtils.getString((Map)I18N_MAP.get(locale.toString()), code);
+        String messageValue = MapUtil.getStr((Map) I18N_MAP.get(locale.toString()), code);
         if (StringUtils.isBlank(messageValue)) {
             return StringUtils.isBlank(defaultMessage) ? code : defaultMessage;
         } else {

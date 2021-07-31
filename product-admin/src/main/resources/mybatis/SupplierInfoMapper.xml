@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.admin.mapper.SupplierInfoMapper">
+
+    <sql id="Base_Column_List">
+        id, supr_no, supr_fullname, supr_abb, supr_effect_idnt, supr_cont_name, supr_cont_mode, supr_cont_mailbox, create_user, create_time, last_update_user, last_update_time    </sql>
+
+    <resultMap id="BaseResultMap" type="com.platform.product.entity.SupplierInfo">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="suprNo" column="supr_no" jdbcType="VARCHAR"/>
+        <result property="suprFullname" column="supr_fullname" jdbcType="VARCHAR"/>
+        <result property="suprAbb" column="supr_abb" jdbcType="VARCHAR"/>
+        <result property="suprEffectIdnt" column="supr_effect_idnt" jdbcType="VARCHAR"/>
+        <result property="suprContName" column="supr_cont_name" jdbcType="VARCHAR"/>
+        <result property="suprContMode" column="supr_cont_mode" jdbcType="VARCHAR"/>
+        <result property="suprContMailbox" column="supr_cont_mailbox" jdbcType="VARCHAR"/>
+        <result property="createUser" column="create_user" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="OTHER"/>
+        <result property="lastUpdateUser" column="last_update_user" jdbcType="VARCHAR"/>
+        <result property="lastUpdateTime" column="last_update_time" jdbcType="OTHER"/>
+    </resultMap>
+
+    <select id="queryPage" parameterType="com.platform.product.entity.SupplierInfo"
+            resultType="com.platform.product.entity.SupplierInfo">
+        select <include refid="Base_Column_List"/>,'effect_idnt' as effectidntvaluesetcode
+        from supplier_info
+        <where>
+            <if test="info.suprAbb != null and info.suprAbb != ''">
+                and supr_abb like concat('%',#{info.suprAbb},'%')
+            </if>
+            <if test="info.suprNo != null and info.suprNo != ''">
+                and supr_no like concat('%',#{info.suprNo},'%')
+            </if>
+            <if test="info.suprContName != null and info.suprContName != ''">
+                and supr_cont_name like concat('%',#{info.suprContName},'%')
+            </if>
+            <if test="info.suprEffectIdnt != null and info.suprEffectIdnt != ''">
+                and supr_effect_idnt = #{info.suprEffectIdnt}
+            </if>
+        </where>
+    </select>
+
+    <select id="exist" parameterType="com.platform.product.entity.SupplierInfo" resultType="int">
+        SELECT count(1) FROM supplier_info
+        where
+        (supr_fullname = #{suprFullname,jdbcType=VARCHAR} or supr_abb = #{suprAbb,jdbcType=VARCHAR})
+        <if test="null != id and id!=''">
+            and id != #{id}
+        </if>
+    </select>
+
+    <select id="getMaxSupplierNo" resultType="java.lang.Integer">
+        select cast(SUBSTRING(MAX(supr_no),8) as signed) FROM supplier_info
+    </select>
+
+</mapper>

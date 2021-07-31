@@ -20,6 +20,7 @@
         <module>product-admin</module>
         <module>product-common</module>
         <module>product-core</module>
+        <module>product-entity</module>
     </modules>
 
     <properties>
@@ -91,6 +92,11 @@
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
                 <version>3.0.0</version>
             </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>3.4.3</version>
+            </dependency>
             <!-- mybatis plus end -->
             <dependency>
                 <groupId>org.redisson</groupId>
@@ -148,11 +154,6 @@
                 <groupId>commons-io</groupId>
                 <version>${commons.io.version}</version>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>commons-lang</groupId>-->
-                <!--<artifactId>commons-lang</artifactId>-->
-                <!--<version>${commons.lang.version}</version>-->
-            <!--</dependency>-->
             <!--解析 User-Agent 字符串的 Java 类库-->
             <dependency>
                 <groupId>eu.bitwalker</groupId>
@@ -180,48 +181,17 @@
                 <version>${java.jwt.version}</version>
             </dependency>
 
-
-            <!--<dependency>-->
-                <!--<groupId>org.bouncycastle</groupId>-->
-                <!--<artifactId>bcprov-jdk15on</artifactId>-->
-                <!--<version>${bcprov.jdk15on.version}</version>-->
-            <!--</dependency>-->
-
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
             </dependency>
 
-            <!--<dependency>-->
-                <!--<groupId>com.google.guava</groupId>-->
-                <!--<artifactId>guava</artifactId>-->
-                <!--<version>${guava.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>org.apache.ant</groupId>-->
-                <!--<artifactId>ant</artifactId>-->
-                <!--<version>${org.apache.ant.version}</version>-->
-            <!--</dependency>-->
-
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
-
-            <!-- mapStruct 对象转换 -->
-            <!--<dependency>-->
-                <!--<groupId>org.mapstruct</groupId>-->
-                <!--<artifactId>mapstruct</artifactId>-->
-                <!--<version>${org.mapstruct.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.mapstruct</groupId>-->
-                <!--<artifactId>mapstruct-processor</artifactId>-->
-                <!--<version>${org.mapstruct.version}</version>-->
-            <!--</dependency>-->
 
             <!-- swagger 生成api文档 TODO -->
             <dependency>
@@ -247,16 +217,15 @@
                 <version>${commons.beanutils.version}</version>
             </dependency>
 
-            <!--<dependency>-->
-                <!--<groupId>org.dom4j</groupId>-->
-                <!--<artifactId>dom4j</artifactId>-->
-                <!--<version>${dom4j.version}</version>-->
-            <!--</dependency>-->
-
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
             <!-- 验证码 -->
             <dependency>
@@ -332,11 +301,6 @@
             <groupId>commons-io</groupId>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>commons-lang</groupId>-->
-            <!--<artifactId>commons-lang</artifactId>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>eu.bitwalker</groupId>
             <artifactId>UserAgentUtils</artifactId>
@@ -375,10 +339,10 @@
             <!--<artifactId>bcprov-jdk15on</artifactId>-->
         <!--</dependency>-->
 
-        <!--<dependency>-->
-            <!--<groupId>com.google.guava</groupId>-->
-            <!--<artifactId>guava</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
 
         <!--<dependency>-->
             <!--<groupId>org.apache.ant</groupId>-->
@@ -389,15 +353,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        <!--    mapstruct依赖-->
-        <!--<dependency>-->
-            <!--<groupId>org.mapstruct</groupId>-->
-            <!--<artifactId>mapstruct-processor</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.mapstruct</groupId>-->
-            <!--<artifactId>mapstruct</artifactId>-->
-        <!--</dependency>-->
         <!-- Mysql驱动包 TODO -->
         <dependency>
             <groupId>mysql</groupId>
@@ -435,11 +390,6 @@
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils-core</artifactId>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>org.dom4j</groupId>-->
-            <!--<artifactId>dom4j</artifactId>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>cn.hutool</groupId>

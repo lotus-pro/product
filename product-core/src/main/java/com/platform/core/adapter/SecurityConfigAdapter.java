@@ -93,7 +93,7 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     }
 
     private static final String[] URL_WHITELIST = {
-            "/auth/system/kaptcha","/favicon.ico", "/swagger-ui.html",
+            "/no-auth/**","/favicon.ico", "/swagger-ui.html",
     };
 
     protected void configure(HttpSecurity http) throws Exception {
@@ -143,7 +143,7 @@ public class SecurityConfigAdapter extends WebSecurityConfigurerAdapter {
                 "/swagger-resources/**", "/configuration/ui",
                 "/configuration/security", "/swagger-ui.html/**",
                 "/webjars/**", "/druid/**", "/actuator/**",
-                "/auth/system/kaptcha", "/rest/**",
+                "/no-auth/**", "/rest/**",
                 "/messageServer/**", "/app/**"});
     }
 

@@ -31,4 +31,4 @@ feign:
 mybatis-plus:
   mapper-locations: classpath*:com/platform/**/mapper/*.xml,classpath*:mybatis/**/*.xml
   #实体扫描，多个package用逗号或者分号分隔
-  type-aliases-package: com.platform.*.entity,com.platform.*.pojo.**
+  type-aliases-package: com.platform.core.entity,com.platform.product.**

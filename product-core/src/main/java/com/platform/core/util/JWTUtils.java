@@ -1,13 +1,17 @@
 package com.platform.core.util;
 
+import cn.hutool.core.map.MapUtil;
 import com.auth0.jwt.JWTSigner;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.JWTVerifyException;
-import org.apache.commons.collections4.MapUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SignatureException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,33 +35,22 @@ public class JWTUtils implements Serializable {
         return signer.sign(claims, options);
     }
 
-    public static Map<String, Object> unsign(String token){
+    public static Map<String, Object> unsign(String token) throws JWTVerifyException {
         JWTVerifier verifier = new JWTVerifier(SECRET);
         Map claims = null;
 
-//        try {
-//            claims = verifier.verify(token);
-//        } catch (NoSuchAlgorithmException var4) {
-//            log.error("NoSuchAlgorithmException", var4);
-//        } catch (InvalidKeyException var5) {
-//            log.error("InvalidKeyException", var5);
-//        } catch (IOException var6) {
-//            log.error("IOException", var6);
-//        } catch (SignatureException var7) {
-//            log.error("SignatureException", var7);
-//        } catch (JWTExpiredException var8) {
-//            throw var8;
-//        } catch (JWTVerifyException var9) {
-//            throw new CommonException("product.error.00001", new Object[0]);
-//        } catch (Exception var10) {
-//            throw new CommonException(var10);
-//        }
-
         try {
             claims = verifier.verify(token);
-        } catch (Exception var10) {
-            return claims;
+        } catch (NoSuchAlgorithmException var3) {
+            log.error("NoSuchAlgorithmException", var3);
+        } catch (InvalidKeyException var4) {
+            log.error("InvalidKeyException", var4);
+        } catch (IOException var5) {
+            log.error("IOException", var5);
+        } catch (SignatureException var6) {
+            log.error("SignatureException", var6);
         }
-        return MapUtils.getMap(claims, "body");
+
+        return MapUtil.getAny(claims, "body");
     }
 }

@@ -33,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 @Api(tags = {"登录处理类"})
 @RestController
 @Slf4j
-@RequestMapping("/auth")
+@RequestMapping("/no-auth")
 public class LoginController extends BaseController {
 
     @Autowired

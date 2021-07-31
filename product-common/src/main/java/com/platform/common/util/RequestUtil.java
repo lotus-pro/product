@@ -1,11 +1,11 @@
 package com.platform.common.util;
 
+import cn.hutool.core.map.MapUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.LocaleUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -61,7 +61,7 @@ public class RequestUtil {
     }
 
     public static String getStringTrim(Map<String, Object> param, String propName, String defaultValue) {
-        String value = MapUtils.getString(param, propName, defaultValue);
+        String value = MapUtil.getStr(param, propName, defaultValue);
         return null == value ? null : value.trim();
     }
 
@@ -93,7 +93,7 @@ public class RequestUtil {
     }
 
     public static void stringToLikeString(Map<String, Object> paraMap, String propName) {
-        String propStr = MapUtils.getString(paraMap, propName);
+        String propStr = MapUtil.getStr(paraMap, propName);
         if (StringUtils.isNotEmpty(propStr)) {
             paraMap.put(propName, "%" + propStr + "%");
         }

@@ -41,6 +41,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.platform</groupId>
+			<artifactId>product-entity</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.platform</groupId>
 			<artifactId>product-core</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>

@@ -1,5 +1,7 @@
 package com.platform.core.util;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.map.MapUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.platform.common.cache.Cache;
@@ -7,8 +9,6 @@ import com.platform.common.constants.CacheConstants;
 import com.platform.common.context.SpringContext;
 import com.platform.common.pojo.admin.ProductRole;
 import com.platform.core.entity.UserDetailInfo;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -83,7 +83,7 @@ public class AuthenticationUtils {
                 throw new IllegalArgumentException("map key name 'userInfo' can not be null");
             } else {
                 Cache cache = SpringContext.getBean(Cache.class);
-                long accessTokenExpireTimestamp = MapUtils.getLong(userMap, "access_token_expire_timestamp");
+                Long accessTokenExpireTimestamp = MapUtil.getLong(userMap, "access_token_expire_timestamp");
                 cache.setMap(CacheConstants.CACHE_AUTH.concat(userCode), userMap, accessTokenExpireTimestamp);
             }
         }
@@ -116,7 +116,7 @@ public class AuthenticationUtils {
     public static ProductRole getRole(UserDetailInfo productUser, String roleCode) {
         if (null != productUser && !StringUtils.isEmpty(roleCode)) {
             List<ProductRole> roles = productUser.getRoles();
-            if (CollectionUtils.isNotEmpty(roles)) {
+            if (CollectionUtil.isNotEmpty(roles)) {
                 Iterator var3 = roles.iterator();
 
                 while (var3.hasNext()) {

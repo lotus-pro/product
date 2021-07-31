@@ -94,28 +94,28 @@ public class SysMenuController extends BaseController {
         return menuDtos;
     }
 
-    @ApiOperation("新增")
+    @ApiOperation("菜单类新增")
     @PostMapping("/add")
     public ResponseResult saveDataInfo(@RequestBody SysMenu sysMenu) {
         sysMenuService.save(sysMenu);
         return result();
     }
 
-    @ApiOperation("修改")
+    @ApiOperation("菜单类修改")
     @PostMapping("/update")
     public ResponseResult updateDataInfo(@RequestBody SysMenu sysMenu) {
         sysMenuService.updateById(sysMenu);
         return result();
     }
-    
-    @ApiOperation("单个查询")
+
+    @ApiOperation("菜单类单个查询")
     @PostMapping("/unique")
     public ResponseResult uniqueOne(@RequestBody SysMenu sysMenu) {
 //        sysMenu = sysMenuService.getById(id);
         return result(sysMenu);
     }
 
-    @ApiOperation("删除")
+    @ApiOperation("菜单类删除")
     @DeleteMapping("/delete")
     public ResponseResult deleteDataInfo(@RequestParam String id) {
         sysMenuService.removeById(id);

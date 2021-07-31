@@ -1,11 +1,11 @@
 package com.platform.core.util;
 
+import cn.hutool.core.map.MapUtil;
 import com.auth0.jwt.JWTExpiredException;
 import com.auth0.jwt.JWTVerifyException;
 import com.platform.common.cache.Cache;
 import com.platform.common.constants.CacheConstants;
 import com.platform.common.context.SpringContext;
-import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +50,7 @@ public class TokenUtil {
             throw new IllegalArgumentException("argument key can not be null or empty");
         } else {
             Map<String, Object> map = JWTUtils.unsign(token);
-            return MapUtils.getString(map, key);
+            return MapUtil.getStr(map, key);
         }
     }
 
