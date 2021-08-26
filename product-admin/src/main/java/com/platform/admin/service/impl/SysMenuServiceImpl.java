@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.admin.mapper.SysMenuMapper;
-import com.platform.common.pojo.admin.SysMenu;
 import com.platform.admin.service.SysMenuService;
+import com.platform.product.entity.admin.SysMenu;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

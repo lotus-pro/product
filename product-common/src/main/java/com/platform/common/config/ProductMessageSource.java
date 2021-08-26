@@ -36,7 +36,7 @@ public class ProductMessageSource implements MessageSource {
     private static final Map<String, Properties> I18N_MAP = Maps.newConcurrentMap();
 
     public ProductMessageSource() {
-        this.loadPackage(""); //加载自定义的国际化配置
+        this.loadPackage(); //加载自定义的国际化配置
         File[] folderPropertiesFiles = this.getFolderPropertiesFiles();
         this.readProperties(folderPropertiesFiles);
     }
@@ -58,8 +58,8 @@ public class ProductMessageSource implements MessageSource {
         }
     }
 
-    private void loadPackage(String i18nPackages) {
-        Set<String> i18nPackageList = this.readI18nPackages(i18nPackages);
+    private void loadPackage() {
+        Set<String> i18nPackageList = this.readI18nPackages(null);
         log.info("MessageSource basedir: {}", String.join(",", i18nPackageList));
         Set<Locale> localeSet = LocaleUtils.availableLocaleSet();
         Iterator var4 = i18nPackageList.iterator();
@@ -82,9 +82,7 @@ public class ProductMessageSource implements MessageSource {
                 }
             }
         }
-
     }
-
 
     private void putPropertiesToI18nMap(Properties properties, String localeString) {
         if (null != properties) {
@@ -94,7 +92,6 @@ public class ProductMessageSource implements MessageSource {
             } else {
                 i18nProperties.putAll(properties);
             }
-
         }
     }
 
@@ -159,20 +156,8 @@ public class ProductMessageSource implements MessageSource {
                 var3 = var14;
                 throw var14;
             } finally {
-                if (fileInputStream != null) {
-                    if (var3 != null) {
-                        try {
-                            fileInputStream.close();
-                        } catch (Throwable var13) {
-                            var3.addSuppressed(var13);
-                        }
-                    } else {
-                        fileInputStream.close();
-                    }
-                }
-
+                closeInputStream(fileInputStream, var3);
             }
-
             return var4;
         } catch (IOException var16) {
             log.error("从file中读取国际化资源异常", var16);
@@ -197,24 +182,27 @@ public class ProductMessageSource implements MessageSource {
                 var3 = var14;
                 throw var14;
             } finally {
-                if (inputStream != null) {
-                    if (var3 != null) {
-                        try {
-                            inputStream.close();
-                        } catch (Throwable var13) {
-                            var3.addSuppressed(var13);
-                        }
-                    } else {
-                        inputStream.close();
-                    }
-                }
-
+                closeInputStream(inputStream, var3);
             }
 
             return var4;
         } catch (IOException var16) {
             log.error("从classPathResource中读取国际化资源异常", var16);
             return null;
+        }
+    }
+
+    private void closeInputStream(InputStream inputStream, Throwable var3) throws IOException {
+        if (inputStream != null) {
+            if (var3 != null) {
+                try {
+                    inputStream.close();
+                } catch (Throwable var13) {
+                    var3.addSuppressed(var13);
+                }
+            } else {
+                inputStream.close();
+            }
         }
     }
 
@@ -282,7 +270,6 @@ public class ProductMessageSource implements MessageSource {
             if (ArrayUtils.isNotEmpty(args)) {
                 messageValue = MessageFormat.format(messageValue, args);
             }
-
             return messageValue;
         }
     }

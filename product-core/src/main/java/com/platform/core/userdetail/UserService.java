@@ -1,7 +1,7 @@
 package com.platform.core.userdetail;
 
-import com.platform.common.pojo.admin.ProductUser;
 import com.platform.core.mapper.DetailUserMapper;
+import com.platform.product.entity.admin.ProductUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

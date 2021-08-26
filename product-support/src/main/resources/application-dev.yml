@@ -1,0 +1,28 @@
+#==============jdbc配置==============#
+spring:
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  datasource:
+    #============== druid 配置==============
+    type: com.alibaba.druid.pool.DruidDataSource
+    dynamic:
+      druid: #以下是全局默认值，可以全局更改
+        max-active: 10
+      primary: pcmc #应用默认使用数据源
+      datasource:
+        pcmc:
+          url: jdbc:mysql://47.106.156.205:3306/platform?useUnicode=true&characterEncoding=utf-8
+          username: root
+          password: 123456
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 47.106.156.205:8848
+        enabled: true
+  #==============redis配置==============
+  redis:
+    host: 47.106.156.205
+    password: 123321
+    port: 6379
+    timeout: 5000
+    database: 1

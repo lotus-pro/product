@@ -6,25 +6,19 @@ import com.platform.admin.service.ProductUserService;
 import com.platform.admin.thread.TestThread;
 import com.platform.admin.util.ThreadPoolUtil;
 import com.platform.common.cache.Cache;
-import com.platform.common.pojo.admin.ProductUser;
-import com.platform.common.util.IpUtils;
-import com.platform.common.util.RequestUtil;
 import com.platform.common.web.BaseController;
 import com.platform.common.web.ResponseResult;
 import com.platform.core.util.AuthenticationUtils;
 import com.platform.core.util.JWTUtils;
+import com.platform.product.entity.admin.ProductUser;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import sun.misc.BASE64Encoder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -33,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 @Api(tags = {"登录处理类"})
 @RestController
 @Slf4j
-@RequestMapping("/no-auth")
+@RequestMapping("/auth")
 public class LoginController extends BaseController {
 
     @Autowired
@@ -45,27 +39,6 @@ public class LoginController extends BaseController {
     @Autowired
     ThreadPoolUtil threadPoolUtil;
 
-    @ApiOperation("验证码获取")
-    @GetMapping("/system/kaptcha")
-    public ResponseResult login() {
-        ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
-        String base64Img = null;
-        try {
-            // 生产验证码字符串并保存到redis中
-            String createText = defaultKaptcha.createText();
-            System.out.println("验证码" + createText);
-            // 使用生成的验证码字符串返回一个BufferedImage对象并转为byte写入到byte数组中
-            BufferedImage challenge = defaultKaptcha.createImage(createText);
-            ImageIO.write(challenge, "jpg", jpegOutputStream);
-            BASE64Encoder encoder = new BASE64Encoder();
-            String str = "data:image/jpeg;base64,";
-            base64Img = str + encoder.encode(jpegOutputStream.toByteArray());
-            HttpServletRequest request = RequestUtil.getRequest();
-            String ipAddr = IpUtils.getIpAddr(request).replaceAll("\\.", "");
-            cache.set("captcha" + ipAddr, createText, 60, TimeUnit.SECONDS);
-        } catch (IOException e) {
-            return resultError("验证码生成失败");
-        }
 //        ArrayList<Map<String, Object>> list = Lists.newArrayList();
 //        for (int i = 0; i < 20; i++) {
 //            HashMap<String, Object> map = Maps.newHashMap();
@@ -84,9 +57,6 @@ public class LoginController extends BaseController {
 //            threadPoolUtil.execute(testThread);
 //        }
 //        threadPoolUtil.aa();
-        ProductUser productUser = productUserService.getById("zengzheng");
-        return result(productUser);
-    }
 
     public static void main(String[] args) throws Exception {
 

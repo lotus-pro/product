@@ -1,7 +1,7 @@
 package com.platform.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.platform.common.pojo.admin.ProductRole;
+import com.platform.product.entity.admin.ProductRole;
 import org.springframework.stereotype.Component;
 
 /**

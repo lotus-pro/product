@@ -19,6 +19,10 @@ spring:
       discovery:
         server-addr: 47.106.156.205:8848
         enabled: true
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8080
+#        port: 8719
   #==============redis配置==============
   redis:
     host: 47.106.156.205

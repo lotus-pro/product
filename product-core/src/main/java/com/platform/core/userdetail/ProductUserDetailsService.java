@@ -1,7 +1,6 @@
 package com.platform.core.userdetail;
 
-import com.platform.common.pojo.admin.ProductUser;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.platform.product.entity.admin.ProductUser;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

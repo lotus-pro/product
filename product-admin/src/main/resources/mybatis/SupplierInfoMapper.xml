@@ -5,7 +5,7 @@
     <sql id="Base_Column_List">
         id, supr_no, supr_fullname, supr_abb, supr_effect_idnt, supr_cont_name, supr_cont_mode, supr_cont_mailbox, create_user, create_time, last_update_user, last_update_time    </sql>
 
-    <resultMap id="BaseResultMap" type="com.platform.product.entity.SupplierInfo">
+    <resultMap id="BaseResultMap" type="com.platform.product.entity.admin.SupplierInfo">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="suprNo" column="supr_no" jdbcType="VARCHAR"/>
         <result property="suprFullname" column="supr_fullname" jdbcType="VARCHAR"/>
@@ -20,8 +20,8 @@
         <result property="lastUpdateTime" column="last_update_time" jdbcType="OTHER"/>
     </resultMap>
 
-    <select id="queryPage" parameterType="com.platform.product.entity.SupplierInfo"
-            resultType="com.platform.product.entity.SupplierInfo">
+    <select id="queryPage" parameterType="com.platform.product.entity.admin.SupplierInfo"
+            resultType="com.platform.product.entity.admin.SupplierInfo">
         select <include refid="Base_Column_List"/>,'effect_idnt' as effectidntvaluesetcode
         from supplier_info
         <where>
@@ -40,7 +40,7 @@
         </where>
     </select>
 
-    <select id="exist" parameterType="com.platform.product.entity.SupplierInfo" resultType="int">
+    <select id="exist" parameterType="com.platform.product.entity.admin.SupplierInfo" resultType="int">
         SELECT count(1) FROM supplier_info
         where
         (supr_fullname = #{suprFullname,jdbcType=VARCHAR} or supr_abb = #{suprAbb,jdbcType=VARCHAR})

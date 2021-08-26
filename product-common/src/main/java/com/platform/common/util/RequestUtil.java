@@ -20,7 +20,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class RequestUtil {
-    private static final String I18N_LANGUAGE = "x-edsp-language";
+    private static final String I18N_LANGUAGE = "language";
 
     private RequestUtil() {
     }
@@ -33,27 +33,6 @@ public class RequestUtil {
             JSONArray jsonArray = (JSONArray)obj;
             return jsonArray.toJavaList(clazz);
         }
-    }
-
-    public static JSONArray getJSONArray(Map<String, Object> param, String propName) {
-        Object obj = param.get(propName);
-        return null == obj ? new JSONArray() : (JSONArray)obj;
-    }
-
-    public static <T> List<T> getAddObjectList(Map<String, Object> param, Class<T> clazz) {
-        return getObjectList(param, "addList", clazz);
-    }
-
-    public static <T> List<T> getUpdateObjectList(Map<String, Object> param, Class<T> clazz) {
-        return getObjectList(param, "updateList", clazz);
-    }
-
-    public static <T> List<T> getDeleteObjectList(Map<String, Object> param, Class<T> clazz) {
-        return getObjectList(param, "deleteList", clazz);
-    }
-
-    public static List<String> getSelectedTree(Map<String, Object> param) {
-        return getObjectList(param, "selectedTree", String.class);
     }
 
     public static String getStringTrim(Map<String, Object> param, String propName) {
@@ -70,8 +49,15 @@ public class RequestUtil {
         return null == attributes ? null : attributes.getRequest();
     }
 
+    public static Locale getLocale() {
+        HttpServletRequest request = getRequest();
+        String i18nLanguage = request.getHeader(I18N_LANGUAGE);
+        Locale locale = Locale.SIMPLIFIED_CHINESE;
+        return StringUtils.isNotBlank(i18nLanguage) ? LocaleUtils.toLocale(i18nLanguage) : locale;
+    }
+
     public static Locale getLocale(HttpServletRequest httpServletRequest) {
-        String i18nLanguage = httpServletRequest.getHeader("x-edsp-language");
+        String i18nLanguage = httpServletRequest.getHeader(I18N_LANGUAGE);
         Locale locale = Locale.SIMPLIFIED_CHINESE;
         return StringUtils.isNotBlank(i18nLanguage) ? LocaleUtils.toLocale(i18nLanguage) : locale;
     }
@@ -97,7 +83,6 @@ public class RequestUtil {
         if (StringUtils.isNotEmpty(propStr)) {
             paraMap.put(propName, "%" + propStr + "%");
         }
-
     }
 
     public static Map<String, Object> requestParamMapToMap(HttpServletRequest request) {

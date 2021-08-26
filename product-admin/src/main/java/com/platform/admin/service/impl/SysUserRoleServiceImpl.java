@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.admin.mapper.SysUserRoleMapper;
 import com.platform.admin.service.SysUserRoleService;
-import com.platform.common.pojo.admin.SysUserRole;
+import com.platform.product.entity.admin.SysUserRole;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

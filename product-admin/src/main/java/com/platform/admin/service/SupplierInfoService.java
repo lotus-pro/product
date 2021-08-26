@@ -2,9 +2,7 @@ package com.platform.admin.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.platform.product.entity.SupplierInfo;
-
-import java.util.List;
+import com.platform.product.entity.admin.SupplierInfo;
 
 /**
  * 供应商信息表(SupplierInfo)表服务接口

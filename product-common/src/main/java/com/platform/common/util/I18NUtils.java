@@ -36,7 +36,7 @@ public class I18NUtils {
             return null;
         } else {
             MessageSource messageSource = (MessageSource) SpringContext.getBean(ProductMessageSource.class);
-            Locale tmpLocale = locale == null ? LocaleContextHolder.getLocale() : locale;
+            Locale tmpLocale = RequestUtil.getLocale();
             return messageSource.getMessage(code, args, defaultValue, tmpLocale);
         }
     }

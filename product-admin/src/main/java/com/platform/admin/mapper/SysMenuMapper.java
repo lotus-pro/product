@@ -1,7 +1,7 @@
 package com.platform.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.platform.common.pojo.admin.SysMenu;
+import com.platform.product.entity.admin.SysMenu;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.platform.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.platform.common.pojo.admin.SysRoleMenu;
+import com.platform.product.entity.admin.SysRoleMenu;
 
 /**
  * (SysRoleMenu)表服务接口

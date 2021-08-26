@@ -2,7 +2,7 @@ package com.platform.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.platform.common.pojo.admin.ProductRole;
+import com.platform.product.entity.admin.ProductRole;
 
 import java.util.List;
 

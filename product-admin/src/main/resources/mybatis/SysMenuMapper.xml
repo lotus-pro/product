@@ -3,9 +3,11 @@
 <mapper namespace="com.platform.admin.mapper.SysMenuMapper">
 
     <sql id="Base_Column_List">
-        id, parent_id, menu_name, menu_path, men_perms, component, type, icon, order_num, create_time, update_time, is_enabled    </sql>
+        id, parent_id, menu_name, menu_path, men_perms, component, type, icon, order_num,
+         create_time, update_time, is_enabled
+    </sql>
 
-    <resultMap id="BaseResultMap" type="com.platform.common.pojo.admin.SysMenu">
+    <resultMap id="BaseResultMap" type="com.platform.product.entity.admin.SysMenu">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
         <result property="menuName" column="menu_name" jdbcType="VARCHAR"/>
@@ -20,7 +22,7 @@
         <result property="isEnabled" column="is_enabled" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="queryRoleOfMenu" parameterType="java.lang.String" resultType="com.platform.common.pojo.admin.SysMenu">
+    <select id="queryRoleOfMenu" parameterType="java.lang.String" resultType="com.platform.product.entity.admin.SysMenu">
         SELECT m.id, parent_id, menu_name, menu_path, men_perms, component, type, icon, order_num, create_time, update_time, is_enabled
         FROM sys_role_menu rm inner join sys_menu m on rm.menu_id = m.id where rm.role_code = #{roleCode}
     </select>

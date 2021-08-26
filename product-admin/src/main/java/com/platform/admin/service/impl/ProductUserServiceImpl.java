@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.admin.mapper.ProductUserMapper;
 import com.platform.admin.service.ProductUserService;
-import com.platform.common.pojo.admin.ProductUser;
+import com.platform.product.entity.admin.ProductUser;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 

@@ -1,0 +1,36 @@
+#指定启动端口
+server:
+  port: 9003
+spring:
+  profiles:
+    active: dev
+  #==============应用名配置=============
+  application:
+    name: product-support
+  main:
+    allow-bean-definition-overriding: true
+  #==============国际化配置=============
+  messages:
+    basename: i18n/message,com.sunline.jraf.messages
+#指定log配置
+logging:
+  level:
+    com.platform: debug
+    org.springframework: warn
+
+#feign的超时时间, 防止feign调用超时
+feign:
+  httpclient:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 3000 #单位毫秒
+        readTimeout: 3000  #单位毫秒
+  hystrix:
+    enabled: true
+#============== myBatis-Plus配置==============
+mybatis-plus:
+  mapper-locations: classpath*:com/platform/**/mapper/*.xml,classpath*:mybatis/**/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: com.platform.core.entity,com.platform.product.**

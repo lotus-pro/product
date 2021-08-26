@@ -1,15 +1,12 @@
 package com.platform.admin.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.admin.mapper.SysRoleMenuMapper;
 import com.platform.admin.service.SysRoleMenuService;
 import com.platform.common.cache.Cache;
-import com.platform.common.pojo.admin.SysRoleMenu;
+import com.platform.product.entity.admin.SysRoleMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * (SysRoleMenu)表服务实现类

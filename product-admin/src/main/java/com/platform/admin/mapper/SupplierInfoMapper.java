@@ -2,7 +2,7 @@ package com.platform.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.platform.product.entity.SupplierInfo;
+import com.platform.product.entity.admin.SupplierInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 

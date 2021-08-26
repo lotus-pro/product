@@ -1,8 +1,8 @@
 package com.platform.admin.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.platform.common.pojo.admin.SysMenu;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.platform.product.entity.admin.SysMenu;
 
 import java.util.List;
 

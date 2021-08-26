@@ -1,6 +1,6 @@
 package com.platform.core.entity;
 
-import com.platform.common.pojo.admin.ProductRole;
+import com.platform.product.entity.admin.ProductRole;
 import lombok.Data;
 
 import java.io.Serializable;
