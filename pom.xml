@@ -23,8 +23,6 @@
         <module>product-entity</module>
         <module>product-support</module>
         <module>product-feign</module>
-        <module>gate-way</module>
-        <module>gate-way-test</module>
     </modules>
 
     <properties>

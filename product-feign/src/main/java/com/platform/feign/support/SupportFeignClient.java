@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(value = "product-support")
 public interface SupportFeignClient {
 
-    @GetMapping("/support/timeOut/{id}")
-    ResponseResult timeOut(@PathVariable("id") String id);
+    @GetMapping("/support/timeOut")
+    ResponseResult timeOut();
 
 }

@@ -1,7 +1,14 @@
 package com.platform.core.handler;
 
+import com.alibaba.csp.sentinel.slots.block.authority.AuthorityException;
+import com.alibaba.csp.sentinel.slots.block.degrade.DegradeException;
+import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
+import com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowException;
+import com.alibaba.csp.sentinel.slots.system.SystemBlockException;
+import com.platform.common.enums.StatusEnum;
 import com.platform.common.exception.CommonException;
 import com.platform.common.util.RequestUtil;
+import com.platform.common.util.ResponseUtil;
 import com.platform.common.web.ResponseResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +24,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -40,6 +48,24 @@ public class GlobalExceptionHandler {
         }
 
         return ResponseResult.error("product.error.00006", new Object[0]);
+    }
+
+    @ExceptionHandler({UndeclaredThrowableException.class})
+    public Object handleRRException(UndeclaredThrowableException e){
+        Throwable throwable = e.getUndeclaredThrowable();
+        if (throwable instanceof FlowException) {
+            return ResponseResult.error("product.error.00010", new Object[0]);
+        } else if (throwable instanceof DegradeException) {
+            return ResponseResult.error("product.error.00011", new Object[0]);
+        } else if (throwable instanceof AuthorityException) {
+            return ResponseResult.error("product.error.00012", new Object[0]);
+        } else if (throwable instanceof ParamFlowException) {
+            return ResponseResult.error("product.error.00013", new Object[0]);
+        } else if (throwable instanceof SystemBlockException) {
+            return ResponseResult.error( "product.error.00014", new Object[0]);
+        } else {
+            return ResponseResult.error("product.error.00006", new Object[0]);
+        }
     }
 
 //    @ExceptionHandler({RestException.class})

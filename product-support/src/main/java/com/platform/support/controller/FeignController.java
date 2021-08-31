@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class FeignController extends BaseController {
 
     @ApiOperation("超时测试")
-    @GetMapping("/timeOut/{id}")
-    public ResponseResult timeOut(@PathVariable("id") String id){
+    @GetMapping("/timeOut")
+    public ResponseResult timeOut(){
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         log.info("调用成功，返回O(∩_∩)O哈哈~");
-        return result("调用成功，返回你的参数" + id + "\r\nO(∩_∩)O哈哈~");
+        return result("调用成功，返回你的参数" + "\r\nO(∩_∩)O哈哈~");
     }
 }

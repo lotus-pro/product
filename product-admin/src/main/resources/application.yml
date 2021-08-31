@@ -12,20 +12,11 @@ spring:
   #==============国际化配置=============
   messages:
     basename: i18n/message,com.sunline.jraf.messages
-  #==============get way配置=============
-#  cloud:
-#    gateway:
-#      routes:
-#      - id: product-admin-test
-#        uri: http://product-test
-#        predicates:
-#        - path=/aaaa/**
 #指定log配置
 logging:
   level:
     com.platform: debug
     org.springframework: warn
-
 #feign的超时时间, 防止feign调用超时 connectTimeout和readTimeout必须同时设置  否则失效
 feign:
   httpclient:
@@ -35,8 +26,8 @@ feign:
       default:
         connectTimeout: 3000 #单位毫秒
         readTimeout: 3000  #单位毫秒
-#  hystrix:
-#    enabled: true
+  sentinel:
+    enabled: true
 #============== myBatis-Plus配置==============
 mybatis-plus:
   mapper-locations: classpath*:com/platform/**/mapper/*.xml,classpath*:mybatis/**/*.xml

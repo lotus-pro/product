@@ -1,4 +1,4 @@
-package com.platform.common.pojo.admin;
+package com.platform.product.entity.admin;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;

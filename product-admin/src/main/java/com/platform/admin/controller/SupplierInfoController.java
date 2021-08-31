@@ -1,6 +1,8 @@
 package com.platform.admin.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.platform.admin.service.SupplierInfoService;
@@ -37,7 +39,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2021-07-27 09:57:59
  */
 @Slf4j
-@Api(tags = {"自定义"})
+@Api(tags = {"供应商"})
 @RestController
 @RequestMapping("/no-auth")
 public class SupplierInfoController extends BaseController {
@@ -50,6 +52,8 @@ public class SupplierInfoController extends BaseController {
     DefaultKaptcha defaultKaptcha;
 
     @ApiOperation("验证码获取")
+//    @SentinelResource(value = "no-auth_system_kaptcha", blockHandlerClass = ProductBlockHandler.class, blockHandler = "handleBusyException")
+    @SentinelResource(value = "no-auth_system_kaptcha")
     @GetMapping("/system/kaptcha")
     public ResponseResult login() {
         ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
@@ -73,7 +77,7 @@ public class SupplierInfoController extends BaseController {
         return result(base64Img);
     }
 
-    @ApiOperation("分页查询")
+    @ApiOperation("供应商分页查询")
     @GetMapping("/supplierInfo/page")
     public ResponseResult queryPage(@RequestParam Map<String, Object> params) {
         IPage<SupplierInfo> page = getIPage(params);
@@ -82,7 +86,7 @@ public class SupplierInfoController extends BaseController {
         return result(page);
     }
 
-    @ApiOperation("新增")
+    @ApiOperation("供应商新增")
     @PostMapping("/supplierInfo/add")
     public ResponseResult saveDataInfo(@RequestBody SupplierInfo supplierInfo) {
         try {
@@ -95,7 +99,6 @@ public class SupplierInfoController extends BaseController {
             } else {
                 supplierNo = "SUP" + format + StringUtils.leftPad(String.valueOf(suprNo + 1), 6, "0");
             }
-//            supplierInfo.setAddBaseInfo();
             supplierInfo.setSuprNo(supplierNo);
             supplierInfoService.save(supplierInfo);
         } catch (Exception e) {
@@ -104,7 +107,7 @@ public class SupplierInfoController extends BaseController {
         return result();
     }
 
-    @ApiOperation("修改")
+    @ApiOperation("供应商修改")
     @PostMapping("/supplierInfo/update")
     public ResponseResult updateDataInfo(@RequestBody SupplierInfo supplierInfo) {
 //        UserDetailInfo currentUser = AuthenticationUtils.getCurrentUser();
@@ -115,6 +118,7 @@ public class SupplierInfoController extends BaseController {
     }
     
     @ApiOperation("单个查询")
+    @SentinelResource
     @PostMapping("/supplierInfo/unique")
     public ResponseResult uniqueOne(@RequestBody SupplierInfo supplierInfo) {
         Integer id = supplierInfo.getId();

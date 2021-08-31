@@ -27,7 +27,7 @@ feign:
       default:
         connectTimeout: 3000 #单位毫秒
         readTimeout: 3000  #单位毫秒
-  hystrix:
+  sentinel:
     enabled: true
 #============== myBatis-Plus配置==============
 mybatis-plus:

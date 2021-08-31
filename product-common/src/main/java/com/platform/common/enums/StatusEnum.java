@@ -15,7 +15,7 @@ public enum StatusEnum {
         return this.code.equals(code);
     }
 
-    private StatusEnum(String code, String description) {
+    StatusEnum(String code, String description) {
         this.code = code;
         this.description = description;
     }

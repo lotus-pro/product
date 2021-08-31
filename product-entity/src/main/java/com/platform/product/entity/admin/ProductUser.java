@@ -1,11 +1,10 @@
-package com.platform.common.pojo.admin;
+package com.platform.product.entity.admin;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ProductUser implements Serializable {

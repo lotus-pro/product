@@ -15,10 +15,11 @@ spring:
           username: root
           password: 123456
   cloud:
-    nacos:
-      discovery:
-        server-addr: 47.106.156.205:8848
-        enabled: true
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8720
+      eager: true #取消Sentinel控制台懒加载
   #==============redis配置==============
   redis:
     host: 47.106.156.205

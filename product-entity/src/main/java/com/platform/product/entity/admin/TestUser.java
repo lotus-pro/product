@@ -1,4 +1,4 @@
-package com.platform.common.pojo.admin;
+package com.platform.product.entity.admin;
 
 import lombok.Data;
 
