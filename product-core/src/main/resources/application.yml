@@ -24,6 +24,8 @@ feign:
       default:
         connectTimeout: 15000 #单位毫秒
         readTimeout: 60000  #单位毫秒
+  sentinel:
+    enabled: true
 #============== myBatis-Plus配置==============
 mybatis-plus:
   mapper-locations: classpath*:com/platform/**/mapper/*.xml,classpath*:mybatis/**/*.xml

@@ -28,7 +28,6 @@ import javax.annotation.Resource;
 public class SentinelTestController extends BaseController {
 
     @Resource
-    @Lazy
     SupportFeignClient supportFeignClient;
 
     @ApiOperation("测试feign调用超时情况")
@@ -120,7 +119,7 @@ public class SentinelTestController extends BaseController {
     @SentinelResource(value ="sentinel_slow_request_ratio",fallback = "fallback")
     public ResponseResult slowRequestRatio() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
