@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface MsgLogService extends IService<MsgLog> {
 
-    void updateStatus(String msgId, Integer status);
+    void updateStatus(String msgId, Integer status, Integer retryCount);
 
     void insert(MsgLog msgLog);
 

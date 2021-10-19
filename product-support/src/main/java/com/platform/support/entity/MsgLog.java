@@ -1,12 +1,14 @@
 package com.platform.support.entity;
 
-import java.util.Date;
-import java.io.Serializable;
-
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import com.baomidou.mybatisplus.annotation.*;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
 
 /**
  * 消息投递日志(MsgLog)表实体类
@@ -43,6 +45,16 @@ public class MsgLog implements Serializable {
     * 路由键
     */                        
     private String routingKey;
+
+    /**
+     * 生产者
+     */
+    private String producer;
+
+    /**
+     * 消费者
+     */
+    private String consumer;
                     
     /**
     * 状态: 0投递中 1投递成功 2投递失败 3已消费
@@ -55,11 +67,6 @@ public class MsgLog implements Serializable {
     private Integer tryCount;
                     
     /**
-    * 下一次重试时间
-    */                        
-    private Date nextTryTime;
-                    
-    /**
     * 创建时间
     */                        
     private Date createTime;
@@ -69,15 +76,21 @@ public class MsgLog implements Serializable {
     */                        
     private Date updateTime;
 
-    public MsgLog(String msgId, Integer status) {
+    public MsgLog(String msgId, Integer status, Integer tryCount) {
         this.msgId = msgId;
         this.status = status;
+        if (Objects.nonNull(tryCount)) {
+            this.tryCount = tryCount;
+        }
     }
 
-    public MsgLog(String msgId, String msg, String exchange, String routingKey) {
+    public MsgLog(String msgId, String msg, String exchange, String routingKey, String producer, String consumer, Date createTime) {
         this.msgId = msgId;
         this.msg = msg;
         this.exchange = exchange;
         this.routingKey = routingKey;
+        this.producer = producer;
+        this.consumer = consumer;
+        this.createTime = createTime;
     }
 }
