@@ -3,12 +3,13 @@ package com.platform.support.controller;
 import cn.hutool.core.util.RandomUtil;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import com.platform.common.context.SpringContext;
 import com.platform.common.web.BaseController;
 import com.platform.common.web.ResponseResult;
-import com.platform.support.entity.MqReq;
 import com.platform.support.entity.MsgLog;
 import com.platform.support.service.MsgLogService;
-import com.platform.support.util.Mail;
+import com.platform.support.util.MailDto;
+import com.platform.support.util.MailUtil;
 import com.platform.support.util.mq.RabbitConfig;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,7 +37,7 @@ public class FeignController extends BaseController {
 
     @ApiOperation("超时测试")
     @GetMapping("/timeOut")
-    public ResponseResult timeOut(MqReq mqReq) {
+    public ResponseResult timeOut() {
 //        String msgId = RandomUtil.randomString(32);
 //        Mail mail = new Mail();
 //        mail.setMsgId(msgId);
@@ -45,7 +46,10 @@ public class FeignController extends BaseController {
 //        mail.setSubject("测试");
 //        MsgLog msgLog = new MsgLog(msgId, JSON.toJSONString(mail), RabbitConfig.EMAIL_EXCHANGE, RabbitConfig.EMAIL_TOPIC_RETRY);
 //        msgLogService.insert(msgLog);// 消息入库
-//        sendMsg(mail);
+        MailDto mailDto = new MailDto(new String[]{"zengzheng@sunline.cn"}, "主题",
+                "<a href='https://www.baidu.com'>百度</a>", null, new String[]{"D:\\vue.json"});
+        MailUtil mailUtil = SpringContext.getBean("mailUtil", MailUtil.class);
+        mailUtil.sendMail(mailDto);
         return result("调用成功，返回你的参数" + "\r\nO(∩_∩)O哈哈~");
     }
 
@@ -56,19 +60,29 @@ public class FeignController extends BaseController {
         for (int i = 0; i < 10; i++) {
             for (String consumer : consumers) {
                 String msgId = RandomUtil.randomString(32);
-                Mail mail = new Mail();
-                mail.setMsgId(msgId);
-                mail.setContent("消息" + i);
-                mail.setReceiver("zengzheng@sunline.cn");
-                mail.setSubject("测试");
-                MsgLog msgLog = new MsgLog(msgId, JSON.toJSONString(mail), RabbitConfig.EMAIL_EXCHANGE,
+                MailDto mailDto = new MailDto(new String[]{"zengzheng@sunline.cn"}, "主题",
+                        "<a href='https://www.baidu.com'>百度</a>", null, new String[]{"D:\\vue.json"});
+                MsgLog msgLog = new MsgLog(msgId, JSON.toJSONString(mailDto), RabbitConfig.EMAIL_EXCHANGE,
                         RabbitConfig.ROUTING_EMAIL_TOPIC, "producer", consumer,new Date());
                 msgLogService.insert(msgLog);
-                CorrelationData correlationData = new CorrelationData(mail.getMsgId());
+                CorrelationData correlationData = new CorrelationData(msgId);
                 String routing = RabbitConfig.ROUTING_EMAIL_TOPIC.concat(".").concat(consumer);
-                rabbitTemplate.convertAndSend(RabbitConfig.EMAIL_EXCHANGE, routing, JSON.toJSONString(mail), correlationData);// 发送消息
+                rabbitTemplate.convertAndSend(RabbitConfig.EMAIL_EXCHANGE, routing, JSON.toJSONString(mailDto), correlationData);// 发送消息
             }
         }
+        return result("调用成功，返回你的参数" + "\r\nO(∩_∩)O哈哈~");
+    }
+
+    @ApiOperation("单个邮件发送")
+    @GetMapping("/once/mail")
+    public ResponseResult onceMail() {
+        MailDto mailDto = new MailDto(new String[]{"zengzheng@sunline.cn"}, "主题",
+                "<a href='https://www.baidu.com'>百度</a>", null, new String[]{"D:\\vue.json"});
+        String msgId = RandomUtil.randomString(32);
+        //插入数据库
+
+        CorrelationData correlationData = new CorrelationData(msgId);
+        rabbitTemplate.convertAndSend(RabbitConfig.EMAIL_EXCHANGE, RabbitConfig.ROUTING_EMAIL_DIRECT, JSON.toJSONString(mailDto), correlationData);// 发送消息
         return result("调用成功，返回你的参数" + "\r\nO(∩_∩)O哈哈~");
     }
 }

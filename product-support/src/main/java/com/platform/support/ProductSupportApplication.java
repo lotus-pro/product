@@ -11,7 +11,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @Slf4j
 @EnableAsync //开启异步调用
 @MapperScan({"com.platform.**.mapper"})
-//@EnableHystrix
 @EnableFeignClients(basePackages = {"com.platform"})
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class},scanBasePackages = {"com.platform"})
 public class ProductSupportApplication {

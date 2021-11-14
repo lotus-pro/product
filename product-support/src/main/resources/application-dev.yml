@@ -28,30 +28,31 @@ spring:
     timeout: 5000
     database: 1
   #==============rabbitmq配置==============
-#  rabbitmq:
-#    host: 47.106.156.205
-#    port: 5672
-#    username: admin
-#    password: admin
-#    template:
-#      mandatory: true # 参数设为true时，交换器无法根据自身的类型和路由键找到一个符合条件的队列,那么 RabbitMQ 会调用 Basic.Return命令将消息返回给生产者
-#      retry:
-#        enabled: true # 开启rabbitmq的生产端重试机制,默认是false,默认重试3次
-#    listener:
-#      direct:
-#        acknowledge-mode: manual  # 开启ACK手动确认
-#      simple:
-#        acknowledge-mode: manual  # 开启ACK手动确认
-#        prefetch: 100
-#        retry:
-#          enabled: true #开启rabbitmq的消费端重试机制,默认是false,默认重试3次
-#    publisher-returns: true  #开启发布者发送失败退回
-#    publisher-confirm-type: correlated
+  rabbitmq:
+    host: 47.106.156.205
+    port: 5672
+    username: admin
+    password: admin
+    template:
+      mandatory: true # 参数设为true时，交换器无法根据自身的类型和路由键找到一个符合条件的队列,那么 RabbitMQ 会调用 Basic.Return命令将消息返回给生产者
+      retry:
+        enabled: true # 开启rabbitmq的生产端重试机制,默认是false,默认重试3次
+    listener:
+      direct:
+        acknowledge-mode: manual  # 开启ACK手动确认
+      simple:
+        acknowledge-mode: manual  # 开启ACK手动确认
+        prefetch: 100
+        retry:
+          enabled: true #开启rabbitmq的消费端重试机制,默认是false,默认重试3次
+    publisher-returns: true  #开启发布者发送失败退回
+    publisher-confirm-type: correlated
   #==============mail配置==============
   mail:
     host: smtp.163.com
     username: 18162224875@163.com
     password: ZLPXKUYGLPRADETN
+    nickname: 曾正
     properties:
       mail:
         smtp:
